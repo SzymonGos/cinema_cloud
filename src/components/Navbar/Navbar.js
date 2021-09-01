@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import SearchForm from './SearchForm';
-import logo from '../assets/images/cinemacloud.png';
+import logo from '../../assets/images/cinemacloud.png';
 
 
 export default function Navbar() {
