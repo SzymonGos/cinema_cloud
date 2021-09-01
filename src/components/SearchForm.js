@@ -7,8 +7,7 @@ export default function SearchForm() {
         <div className="icon-group">
             <span className='icon-group__item'>
             <FontAwesomeIcon 
-            icon={faSearch} 
-            rotation={90}                 
+            icon={faSearch}             
             />
             </span>
             <span className='icon-group__item'>

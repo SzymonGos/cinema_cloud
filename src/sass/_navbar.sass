@@ -1,11 +1,17 @@
-nav
+.nav
     width: 100%
-    padding: 0.4rem 0.6rem
+    padding: .8rem 1rem
     color: $main-white
-    background: $main-black
-    display: flex
-    align-items: centers
-    justify-content: space-between
+    position: fixed
+    top: 0
+    z-index: 999
+    transition: 1s cubic-bezier(.4,.3,0,1)
+
+    .navbar-content
+        max-width: 1280px
+        margin: 0 auto
+        display: flex
+        justify-content: space-between
     
     .logo-img
         max-width: 150px
@@ -16,3 +22,6 @@ nav
         &__item:last-of-type
             margin-left: 20px
 
+.nav-background
+    background: $main-black
+    transition: 1s cubic-bezier(.4,.3,0,1)
