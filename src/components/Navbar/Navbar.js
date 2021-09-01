@@ -1,6 +1,3 @@
-// TODO 1: add logo / background color (black) on hover / sticky top
-// TODO 2: create SearchForm and add to the Navbar / make it responsive
-
 import React, { useState, useEffect } from 'react';
 import SearchForm from './SearchForm';
 import logo from '../../assets/images/cinemacloud.png';
