@@ -8,13 +8,15 @@
     transition: 1s cubic-bezier(.4,.3,0,1)
 
     .navbar-content
-        max-width: 1280px
-        margin: 0 auto
+        @include content
         display: flex
         justify-content: space-between
     
     .logo-img
         max-width: 150px
+
+        @include breakpoint-md-up
+            max-width: 200px
 
     .icon-group   
         display: flex 
