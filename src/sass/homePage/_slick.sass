@@ -1,0 +1,29 @@
+// .slick-slide
+//     display: flex !important
+//     justify-content: center
+//     flex-direction: row
+
+.carousel-content
+    width: 100%
+    padding: 0 1rem
+
+.slick-arrow
+    position: absolute
+    top: -2rem
+    right: 5rem
+    margin-bottom: 2rem
+    font-size: 1.5rem
+    cursor: pointer
+    
+    &:first-child
+        margin-right: 3rem
+
+.prev
+    z-index: 2
+
+.next
+    z-index: 2
+
+@include breakpoint-xl-down
+    .slick-arrow
+        right: 1rem
