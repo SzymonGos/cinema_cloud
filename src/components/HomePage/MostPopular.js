@@ -11,12 +11,12 @@ export default function MostPopular() {
                 </div>
 
                 <Carousel />
-                <div className='grid'>
+                {/* <div className='grid'>
                     <MovieCard />
                     <MovieCard />
                     <MovieCard />
                     <MovieCard />
-                </div>
+                </div> */}
             </section>
     )
 }

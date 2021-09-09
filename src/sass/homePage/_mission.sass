@@ -1,0 +1,49 @@
+.mission
+    background-color: $main-black
+    padding: 1rem 1rem
+    color: $main-white
+    margin-bottom: 4rem
+    &__content
+        max-width: 992px
+        margin: 0 auto
+    
+    &__title-wrapper
+        border-bottom: 1px solid #f4c518
+        margin-bottom: 2rem
+    
+    &__title
+        font-size: 2rem
+        font-weight: 200
+        margin-bottom: 2rem
+        text-transform: capitalize
+
+    &__text
+        line-height: 1.8rem
+        & p
+            font-size: 1.2rem
+        
+            
+@include breakpoint-lg-up
+
+    .mission
+        padding: 3rem
+
+        &__content
+            display: flex
+            flex-direction: row
+                
+        &__title-wrapper
+            flex-basis: 20%
+            display: flex
+            align-items: center
+            border-bottom: none
+            margin-bottom: 0
+            border-right: 1px solid #f4c518
+        
+        &__title
+            margin-bottom: 0
+        
+        &__text
+            margin-left: 2rem
+            align-self: center
+    

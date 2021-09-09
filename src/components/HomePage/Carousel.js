@@ -64,7 +64,7 @@ export default function Carousel() {
     const settings = {
         dots: false,
         infinite: true,
-        speed: 500,
+        speed: 600,
         slidesToShow: 4,
         slidesToScroll: 4,
         nextArrow: <ArrowRight/>,
