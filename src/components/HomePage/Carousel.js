@@ -3,6 +3,7 @@ import "slick-carousel/slick/slick.scss";
 import "slick-carousel/slick/slick-theme.scss";
 import Slider from "react-slick";
 import MovieCard from '../MovieCard';
+import { v4 as uuidv4 } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -100,7 +101,7 @@ export default function Carousel() {
     return (
         <div className='carousel-content'>
             <Slider {...settings}>
-                {movies.map((movie) => <MovieCard  
+                {movies.map((movie) => <MovieCard  key={uuidv4()}
                 {...movie}
                 styles={{'margin':'2rem 0'}}
                  />)}
