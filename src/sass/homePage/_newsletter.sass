@@ -1,0 +1,62 @@
+.newsletter
+    width: 100%
+    padding: .7rem
+    
+    &__content
+        @include content-md
+        width: 100%
+        padding: 1rem 0
+
+    &__text
+        text-align: center
+        margin-bottom: 2rem
+
+    &__title
+        font-weight: 300
+        margin-bottom: 1rem
+    
+    &__input-group
+        margin: 1rem 0
+        
+    &__form
+        text-align: center
+
+    &__input
+        margin: 0 .5rem 1rem
+        padding: .53rem .75rem
+        text-align: center
+        letter-spacing: 1px
+        border: none
+        font-size: 1.1rem
+        
+        &:focus
+            outline: 1px solid $main-gold
+
+@include breakpoint-lg-up
+    
+    .newsletter
+        padding: 1rem
+
+        &__content
+            display: flex
+            flex-direction: row
+            justify-content: space-between
+            align-items: center
+
+        &__text
+            flex-basis: 50%
+            margin-bottom: 0
+
+        &__input-group
+            flex-basis: 50%
+
+        &__title
+            margin-bottom: 1.5rem
+
+        &__input-group
+            margin: 1rem 0
+
+        &__input
+            width: 65%
+            margin-bottom: 0
+            

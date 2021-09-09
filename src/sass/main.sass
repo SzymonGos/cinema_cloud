@@ -5,11 +5,13 @@
 @import 'mixins'
 @import 'grid'
 @import 'navbar'
+@import 'button'
 @import './homePage/heroBanner'
 @import './homePage/mostPopular'
 @import 'movieCard'
 @import './homePage/slick'
-@import './homePage/_mission'
+@import './homePage/mission'
+@import './homePage/newsletter'
 @import 'footer'
 
 *
@@ -32,10 +34,10 @@ h1
     padding-bottom: 1.4rem 
 
 h2
-    font-size: 1.5rem
+    font-size: 1.7rem
 
 p
-    font-size: 1.13rem
+    font-size: 1.3rem
 
 a, a:visited
     color: $main-black
@@ -47,3 +49,6 @@ a, a:visited
 @include breakpoint-md-up
     h1
         font-size: 2.5rem
+    
+    p
+        font-size: 1.4rem
