@@ -5,7 +5,7 @@ export default function Footer() {
         <footer className='footer'>
             <div className="footer-content">
                 <div className="credits">
-                    <span>Powered by </span><a href="https://www.themoviedb.org/">TMDb</a>
+                    <span>Powered by </span><a href="https://www.themoviedb.org/" target="_blank">TMDb</a>
                 </div>
                 <div className="copyright">
                     <p>
