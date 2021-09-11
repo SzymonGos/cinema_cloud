@@ -14,7 +14,7 @@ export default function Footer() {
                     <div className="newsletter__input-group">
                         <form className="newsletter__form">
                             <input className='newsletter__input' type="text" name="email" placeholder='Enter email address' />
-                            <button class='button' type='submit' onClick={(e) => e.preventDefault()}>Submit</button>
+                            <button className='button' type='submit' onClick={(e) => e.preventDefault()}>Submit</button>
                         </form>
                     </div>
                 </div>
