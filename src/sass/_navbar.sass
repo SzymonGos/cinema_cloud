@@ -7,7 +7,7 @@
     z-index: 999
     transition: 1s cubic-bezier(.4,.3,0,1)
 
-    .navbar-content
+    &__content
         @include content
         display: flex
         justify-content: space-between
@@ -18,12 +18,22 @@
         @include breakpoint-md-up
             max-width: 200px
 
-    .icon-group   
-        display: flex 
-        align-items: center
-        &__item:last-of-type
-            margin-left: 20px
-
+.menu  
+    display: flex 
+    align-items: center
+    list-style: none
+        
+    &__item
+        margin-right: 1rem
+        cursor: pointer
+            
+        &:last-child
+            margin-right: 0
+                
 .nav-background
     background: $main-black
     transition: 1s cubic-bezier(.4,.3,0,1)
+
+@include breakpoint-md-up
+    .menu__item
+        margin-right: 1.5rem
