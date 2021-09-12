@@ -12,11 +12,8 @@
         display: flex
         justify-content: space-between
     
-    .logo-img
-        max-width: 150px
-
-        @include breakpoint-md-up
-            max-width: 200px
+.logo-img
+    max-width: 150px
 
 .menu  
     display: flex 
@@ -35,5 +32,9 @@
     transition: 1s cubic-bezier(.4,.3,0,1)
 
 @include breakpoint-md-up
+    
+    .logo-img
+        max-width: 200px
+    
     .menu__item
         margin-right: 1.5rem
