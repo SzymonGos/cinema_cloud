@@ -1,12 +1,18 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 export default function MenuItems() {
     return (
         <ul className="menu">
             <li className='menu__item'>
-                <h3 className='nav__item'>Movies</h3>
+                <Link 
+                className='nav__link'
+                to='/movies'
+                >
+                    <h3 className='nav__item'>Movies</h3>
+                </Link>
             </li>
             <li className='menu__item'>
                 <FontAwesomeIcon
