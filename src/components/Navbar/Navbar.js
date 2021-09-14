@@ -15,7 +15,7 @@ export default function Navbar() {
     }, [])
 
     return (
-        <nav className={`${offset > 50 ? "nav nav-background" : "nav"}`}>
+        <nav className={`${offset > 30 ? "nav nav-background" : "nav"}`}>
             <div className="nav__content">
                 <Link to='/'>
                     <img className='logo-img' src={logo} alt="cinemacloud" />
