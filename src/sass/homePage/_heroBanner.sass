@@ -13,50 +13,20 @@
 
     &__rating
         @include content
-        position: relative
-        padding: 4rem 2rem 0 0
-        color: $main-white
-        width: 100%
-        z-index: 10
-
-        & ul
-            display: flex
-            justify-content: flex-end
-            align-items: baseline
-            list-style: none
-            letter-spacing: 1px
-        
-            & li
-                margin-right: .5rem
-
-                &:first-child
-                    align-self: center
-                    font-size: 1.4rem
-                    
-                &:last-child
-                    margin-right: 0
+        @include rating-items
             
     &__movie-rating
-        font-weight: 200    
-        font-size: 1.6rem
+        @include movie-rating
         
     &__max-rating
-        font-weight: 200
-        opacity: 0.5
-        font-size: 1.1rem 
-        float: right
-        & p
-            font-size: 1.1rem
+        @include max-rating
     
     &__text-box
-        position: absolute
-        min-height: 100px
-        max-width: 700px
-        color: $main-white !important
-        bottom: 0px
-        padding: 1.3rem
-        z-index: 2
+        @include text-box
 
+    &__shadow-bottom
+        @include shadow-bottom
+        
     &__shadow-bottom
         @include shadow-bottom
 
@@ -66,4 +36,4 @@
         padding-top: 5rem
 
     .hero__text-box
-        padding: 0 0 4rem
+        padding: 0 3rem 4rem

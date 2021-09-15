@@ -1,0 +1,80 @@
+.backdrop
+    position: relative
+    height: 600px
+    width: 100%
+    background: radial-gradient(circle, #dcbdbd 0%, rgba(75,75,75,1) 100%)
+    
+    &__content
+        @include content
+        position: absolute
+        bottom: 0
+        right: 0
+        left: 0
+
+    &__shadow-top
+        @include shadow-top
+
+    &__rating
+        @include content
+        @include rating-items
+            
+    &__movie-rating
+        @include movie-rating
+        
+    &__max-rating
+        @include max-rating
+    
+    &__text-box
+        @include text-box
+        padding-bottom: 4rem
+
+    &__shadow-bottom
+        @include shadow-bottom
+
+    &__plot-md-up
+        display: none
+
+.movie-type
+    color: $main-gold
+
+.plot
+    padding: 2rem 1rem
+    color: $secondary-black
+
+    &__title
+        font-weight: 200
+        color: $main-black
+        margin-bottom: 1rem
+
+
+
+@include breakpoint-sm-up
+
+    .backdrop__rating
+        padding: 5rem 0
+        
+
+    .backdrop__text-box
+        padding: 0 0 4rem
+        bottom: 4rem
+
+    .plot
+        display: none
+
+    .backdrop__plot-md-up
+        @include text-box
+        display: inline-block
+        width: 500px
+        right: 0
+        padding: 0 3rem 4rem
+
+
+    .plot__title
+        display: inline
+        margin: 0
+        color: $main-white
+
+@include breakpoint-lg-up
+    .backdrop__plot-md-up
+        width: 700px
+

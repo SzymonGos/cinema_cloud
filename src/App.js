@@ -3,6 +3,7 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home';
 import Footer from './components/Footer';
 import Movies from './pages/Movies';
+import SingleMovie from './pages/SingleMovie';
 import {
     BrowserRouter as Router,
     Switch,
@@ -13,12 +14,15 @@ export default function App() {
     return (
         <Router>
             <Navbar />
-            <Switch>
-                <Route exact path='/'>
+            <Switch>            
+                {/* <Route exact path='/'>
                     <Home />
                 </Route>
                 <Route path='/movies'>
                     <Movies />
+                </Route> */}
+                <Route>
+                <SingleMovie />
                 </Route>
             </Switch>
             <Footer />

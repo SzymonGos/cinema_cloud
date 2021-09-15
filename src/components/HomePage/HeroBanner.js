@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fas, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 export default function HeroBanner() {
     return (
@@ -25,10 +25,8 @@ export default function HeroBanner() {
             <div className="hero__shadow-bottom"></div>
             <div className="hero__content">
                 <div className="hero__text-box">
-                    <div className="hero__text-background">
-                        <h1 className='title'>The Movie Title</h1>
-                        <p className='paragraph'>Amazing description text about selected movie for this hero image banner.mazing description text about selected movie for this hero image banner.mazing description text about selected movie for this hero image banner.</p>
-                    </div>
+                    <h1 className='title'>The Movie Title</h1>
+                    <p className='paragraph'>Amazing description text about selected movie for this hero image banner.mazing description text about selected movie for this hero image banner.mazing description text about selected movie for this hero image banner.</p>
                 </div>
             </div>
         </section>
