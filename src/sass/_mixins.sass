@@ -1,22 +1,80 @@
 @mixin content
-    max-width: 1280px
+    max-width: 700px
     margin: 0 auto
 
-@mixin content-md
-    max-width: 992px
-    margin: 0 auto
+    @include breakpoint-md-up
+        max-width: 992px
+        margin: 0 auto
 
+    @include breakpoint-lg-up
+        max-width: 1280px
+        margin: 0 auto
+
+// @mixin content-sm
+//     max-width: 700px
+//     margin: 0 auto
+
+// @mixin content-md
+//     max-width: 992px
+//     margin: 0 auto
+
+// hero && backdrop
 @mixin shadow-top
-        background: linear-gradient( to bottom, rgba(0, 0, 0, 0.35) 0%, transparent 100% )
-        height: 160px
-        width: 100%
-        position: absolute
-        top: 0
-        left: 0
+    background: linear-gradient( to bottom, rgba(0, 0, 0, 0.35) 0%, transparent 100% )
+    height: 160px
+    width: 100%
+    position: absolute
+    top: 0
+    left: 0
 
 @mixin shadow-bottom
-        background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 35%, rgba(0, 0, 0, 0.6) 70%, rgba(0, 0, 0, 0.8) 100% )
-        position: absolute
-        height: 250px
-        width: 100%
-        bottom: 0
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 35%, rgba(0, 0, 0, 0.6) 70%, rgba(0, 0, 0, 0.8) 100% )
+    position: absolute
+    height: 250px
+    width: 100%
+    bottom: 0
+
+@mixin rating-items
+    position: relative
+    padding: 4rem 2rem 0 0
+    color: $main-white
+    width: 100%
+    z-index: 10
+
+    & ul
+        display: flex
+        justify-content: flex-end
+        align-items: baseline
+        list-style: none
+        letter-spacing: 1px
+        
+        & li
+            margin-right: .5rem
+
+            &:first-child
+                align-self: center
+                font-size: 1.4rem
+                    
+            &:last-child
+                margin-right: 0
+
+@mixin movie-rating
+    font-weight: 200    
+    font-size: 1.6rem
+
+@mixin max-rating
+    font-weight: 200
+    opacity: 0.6
+    font-size: 1.1rem 
+    float: right
+        
+    & p
+        font-size: 1.1rem
+
+@mixin text-box
+    position: absolute
+    min-height: 100px
+    color: $main-white !important
+    bottom: 0px
+    padding: 1.3rem
+    z-index: 2
