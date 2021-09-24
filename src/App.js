@@ -15,14 +15,8 @@ export default function App() {
         <Router>
             <Navbar />
             <Switch>            
-                {/* <Route exact path='/'>
-                    <Home />
-                </Route>
-                <Route path='/movies'>
-                    <Movies />
-                </Route> */}
                 <Route>
-                <SingleMovie />
+                <Home />
                 </Route>
             </Switch>
             <Footer />
