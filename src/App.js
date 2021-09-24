@@ -14,9 +14,9 @@ export default function App() {
     return (
         <Router>
             <Navbar />
-            <Switch>            
+            <Switch>
                 <Route>
-                <Home />
+                    <Home />
                 </Route>
             </Switch>
             <Footer />
