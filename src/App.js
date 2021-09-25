@@ -9,14 +9,18 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
+import PATH from './services/paths';
 
 export default function App() {
     return (
         <Router>
             <Navbar />
             <Switch>
-                <Route>
-                    <Home />
+                <Route exact path={PATH.HOME}>
+                    <Home/>
+                </Route>
+                <Route path={PATH.MOVIES}>
+                    <Movies/>
                 </Route>
             </Switch>
             <Footer />
