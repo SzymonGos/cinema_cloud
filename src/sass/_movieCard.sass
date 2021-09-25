@@ -4,6 +4,7 @@
     cursor: pointer
     // width: 230px
     // width: 100%
+    position: relative
     margin: 0 1rem
     transition: cubic-bezier(.15,.49,.51,.96) 0.4s
     
@@ -23,6 +24,19 @@
     
     &__title
         font-weight: 300 !important
+
+    &__favourite
+        position: absolute
+        z-index: 500
+        right: 0
+        top: 0
+        font-size: 1.7rem
+        margin: .5rem
+        color: $main-white
+        
+        &:hover
+            color: $main-gold
+            
 
 @include breakpoint-md-up
     .card

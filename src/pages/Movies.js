@@ -13,7 +13,8 @@ export default function Movies() {
                         {movies.map((movie, index) =>
                             <MovieCard
                                 key={index}
-                                {...movie}
+                                title={movie.title}
+                                index={index}
                             />)}
                     </div>
                 </div>

@@ -72,7 +72,8 @@ export default function Carousel() {
                 {movies.map((movie, index) =>
                     <MovieCard
                         key={index}
-                        {...movie}
+                        title={movie.title}
+                        index={index}
                         styles={{ 'margin': '2rem 0' }}
                     />)}
             </Slider>
