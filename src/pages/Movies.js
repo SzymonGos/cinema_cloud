@@ -11,11 +11,12 @@ export default function Movies() {
                 <div className="movies__content">
                     <div className="grid">
                         {movies.map((movie, index) =>
-                            <MovieCard
-                                key={index}
-                                title={movie.title}
-                                index={index}
-                            />)}
+                                <MovieCard
+                                    key={index}
+                                    title={movie.title}
+                                    id={movie.id}
+                                />
+                        )}
                     </div>
                 </div>
             </section>

@@ -1,24 +1,23 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import FavouriteBtn from './FavouriteBtn';
 
 
-export default function MovieCard({ title, styles, index }) {
+
+export default function MovieCard({ id, title, styles }) {
     return (
         <div className='card' style={styles}>
-            <button 
-                type='button'
-                onClick={() => console.log(index+1)}
-                >
-                <FontAwesomeIcon
-                    className='card__favourite'
-                    icon={faStar}
-                />
-            </button>
-            <div className="card__poster-img"></div>
-            <div className="card__body">
-                <h3 className="card__title">{title}</h3>
-            </div>
+            <FavouriteBtn id={id}/>
+            <Link
+                className='card__link'
+                to={`/${id}`}
+                key={id}
+            >
+                <div className="card__poster-img"></div>
+                <div className="card__body">
+                    <h3 className="card__title">{title}</h3>
+                </div>
+            </Link>
         </div>
     )
 }

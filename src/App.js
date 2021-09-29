@@ -17,10 +17,14 @@ export default function App() {
             <Navbar />
             <Switch>
                 <Route exact path={PATH.HOME}>
-                    <Home/>
+                    <Home />
                 </Route>
                 <Route path={PATH.MOVIES}>
-                    <Movies/>
+                    <Movies />
+                </Route>
+                <Route
+                    path={PATH.SINGLE_MOVIE}
+                    children={<SingleMovie />}>
                 </Route>
             </Switch>
             <Footer />

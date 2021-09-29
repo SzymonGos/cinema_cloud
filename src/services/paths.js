@@ -1,6 +1,7 @@
 const PATH = {
     HOME: '/',
-    MOVIES: '/movies'
+    MOVIES: '/movies',
+    SINGLE_MOVIE: '/:id'
 }
 
 

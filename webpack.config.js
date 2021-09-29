@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
+const LinkTypePlugin = require('html-webpack-link-type-plugin').HtmlWebpackLinkTypePlugin;
 
 module.exports = {
     output: {
@@ -40,18 +41,15 @@ module.exports = {
                     }
                 ]
             },
-            {
-                test: /\.(svg|eot|woff|woff2|ttf)$/,
-                use: [
-                    {
-                        loader: "file-loader"
-                    }
-                ]
-            },
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'style.css',
+        }),
+        new LinkTypePlugin({
+            '*.css' : 'text/css'
+        }),
         new HtmlWebpackPlugin({
             template: './src/index.html',
             filename: 'index.html',

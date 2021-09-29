@@ -3,13 +3,13 @@ import MenuItems from './MenuItems';
 import logo from '../../assets/images/cinemacloud.png';
 import { Link } from 'react-router-dom';
 import { useState as useGlobalState } from '@hookstate/core';
-import { starCount, increaseStarCount } from '../../services/storage';
+import { starCount } from '../../services/storage';
 import PATH from '../../services/paths';
 
 export default function Navbar() {
 
     const [offset, setOffset] = useState(0);
-    const global = useGlobalState(starCount);
+    const globalStarCount = useGlobalState(starCount);
 
     useEffect(() => {
         window.onscroll = () => {
@@ -32,14 +32,8 @@ export default function Navbar() {
                     />
                 </Link>
                 <div>
-                    <button
-                        type='button'
-                        onClick={() => increaseStarCount()}
-                    >
-                        Add Star
-                    </button>
                     <div>
-                        <h4>Stars: {global.get()}</h4>
+                        <h4>Stars: {globalStarCount.get()}</h4>
                     </div>
                 </div>
                 <MenuItems />
