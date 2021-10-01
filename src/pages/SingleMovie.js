@@ -9,8 +9,10 @@ export default function SingleMovie() {
     const [movie, setMovie] = useState([]);
     const { id } = useParams();
 
+    const movieId = parseInt(id);
+
     useEffect(() => {
-        const newMovie = movies.find(movie => movie.id === parseInt(id));
+        const newMovie = movies.find(movie => movie.id === movieId);
         setMovie(newMovie);
     }, []);
 
@@ -39,7 +41,7 @@ export default function SingleMovie() {
                     <div className="backdrop__text-box">
                         <div>
                             <h1 className='title'>{movie.title}</h1>
-                            <FavouriteBtn id={id} />
+                            <FavouriteBtn id={movieId} />
                         </div>
                         <span>
                             <p>Directed by <strong>John Smith</strong>,</p>

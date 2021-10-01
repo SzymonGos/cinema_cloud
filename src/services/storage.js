@@ -1,33 +1,31 @@
-import {createState} from '@hookstate/core'
+import {createState, useState} from '@hookstate/core'
 
-const starCount = createState(0);
-const currentIndex = createState(null);
-const favouriteMovies = createState([]);
-
-const addFavourite = (movie) => {
-    favouriteMovies.set([...favouriteMovies, movie]);
-    console.log(favouriteMovies.get());
-};
-
-const removeFavourite = (movie) => {
-    const filteredList = favouriteMovies.filter(
-        item => item !== movie
-      );
-      favouriteMovies.set(filteredList);
+const initialState = {
+    favouriteMovieIds: [],
 }
 
+const store = createState(initialState);
 
-const increaseStarCount = (id) => {
-    
-    if(id == currentIndex.get()){
-        starCount.set(p => p - 1);
-        currentIndex.set(null);
-        removeFavourite(id);
-    } else {
-        starCount.set(p => p + 1);
-        currentIndex.set(id);
-        addFavourite(id);
+export function useStore() {
+    const withState = useState(store);
+
+    return {
+        get state() {
+            return withState.get();
+        },
+
+        toggleFavouriteMovieId(movieId) {
+            let result = [...this.state.favouriteMovieIds];
+
+            const index = result.indexOf(movieId);
+            if (index === -1){
+                result.push(movieId);
+            } else {
+                result.splice(index, 1);
+            }
+            
+            store.favouriteMovieIds.set(result);
+        }
     }
-}
 
-export {starCount, increaseStarCount};
+}
