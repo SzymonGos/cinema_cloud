@@ -2,8 +2,19 @@
     position: relative
     height: 600px
     width: 100%
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(75,75,75,1) 100%)
     margin-bottom: 3rem
+    background-size: cover !important
+    background-position: center !important
+    animation: heroBanner 1s
+
+    @keyframes heroBanner 
+        from 
+            opacity: 0
+    
+        to 
+            opacity: 1
+    
+  
 
     &__content
         @include content

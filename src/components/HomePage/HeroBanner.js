@@ -1,10 +1,14 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { BACKDROP_IMAGE_URL } from '../../config';
 
-export default function HeroBanner() {
+export default function HeroBanner({heroBanner}) {
+    
     return (
-        <section className="hero">
+        <section  className="hero" style={
+            heroBanner && {backgroundImage: `url(${BACKDROP_IMAGE_URL}${heroBanner.backdrop_path})`}
+            }>
             <div className="hero__shadow-top"></div>
             <div className='hero__rating'>
                 <ul>
@@ -14,19 +18,19 @@ export default function HeroBanner() {
                         />
                     </li>
                     <li>
-                        <h5 className='hero__movie-rating'>9.0</h5>
+                        {heroBanner && <h5 className='hero__movie-rating'>{heroBanner.vote_average}</h5>}
                     </li>
                     <li>
                         <h6 className='hero__max-rating'>/10</h6>
                     </li>
                 </ul>
-                <div className="hero__max-rating"><p>300 Ratings</p></div>
+                    {heroBanner && <div className="hero__max-rating"><p>{heroBanner.vote_count} Ratings</p></div>}
             </div>
             <div className="hero__shadow-bottom"></div>
             <div className="hero__content">
                 <div className="hero__text-box">
-                    <h1 className='title'>The Movie Title</h1>
-                    <p className='paragraph'>Amazing description text about selected movie for this hero image banner.mazing description text about selected movie for this hero image banner.mazing description text about selected movie for this hero image banner.</p>
+                    {heroBanner && <h1 className='title'>{heroBanner.title}</h1>}
+                    {heroBanner && <p className='paragraph'>{heroBanner.overview}</p>}
                 </div>
             </div>
         </section>
