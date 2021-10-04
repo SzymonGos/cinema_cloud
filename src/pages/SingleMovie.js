@@ -12,7 +12,6 @@ export default function SingleMovie() {
     const movieId = parseInt(id);
     const { state } = useSingleMovieFetch(movieId);
 
-    console.log(state);
     return (
         <>
             <div
