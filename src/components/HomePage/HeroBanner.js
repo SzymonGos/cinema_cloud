@@ -1,14 +1,16 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { BACKDROP_IMAGE_URL } from '../../config';
+import { IMAGE_URL, BACKDROP_SIZE } from '../../config';
 
-export default function HeroBanner({heroBanner}) {
-    
+export default function HeroBanner({ heroBanner }) {
+
     return (
-        <section  className="hero" style={
-            heroBanner && {backgroundImage: `url(${BACKDROP_IMAGE_URL}${heroBanner.backdrop_path})`}
-            }>
+        <section
+            className="hero"
+            style={
+                heroBanner && { backgroundImage: `url(${IMAGE_URL}${BACKDROP_SIZE}${heroBanner.backdrop_path})` }}
+        >
             <div className="hero__shadow-top"></div>
             <div className='hero__rating'>
                 <ul>
@@ -24,7 +26,7 @@ export default function HeroBanner({heroBanner}) {
                         <h6 className='hero__max-rating'>/10</h6>
                     </li>
                 </ul>
-                    {heroBanner && <div className="hero__max-rating"><p>{heroBanner.vote_count} Ratings</p></div>}
+                {heroBanner && <div className="hero__max-rating"><p>{heroBanner.vote_count} Ratings</p></div>}
             </div>
             <div className="hero__shadow-bottom"></div>
             <div className="hero__content">

@@ -1,8 +1,7 @@
 import React from 'react';
-import MovieCard from '../MovieCard';
 import Carousel from './Carousel';
 
-export default function MostPopular() {
+export default function MostPopular({movies}) {
     return (
             <section className="popular-content">
                 <div className="title-wrapper">
@@ -10,13 +9,7 @@ export default function MostPopular() {
                     <div className="underline"></div>
                 </div>
 
-                <Carousel />
-                {/* <div className='grid'>
-                    <MovieCard />
-                    <MovieCard />
-                    <MovieCard />
-                    <MovieCard />
-                </div> */}
+                <Carousel movies={movies}/>
             </section>
     )
 }

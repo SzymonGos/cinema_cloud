@@ -16,8 +16,9 @@
 
     &__poster-img
         width: 100%
-        height: 300px
-        background: #eee
+        height: 350px    
+        background-size: cover !important
+        background-position: center !important
 
     &__body
         margin: 1rem
@@ -44,8 +45,17 @@
         
         &:hover, &--active
             color: $main-gold
-            
+
+        &--singleMovie
+            position: absolute
+            right: -15px
+            top: -50px
 
 @include breakpoint-md-up
     .card
         width: 230px
+
+        &__favourite--singleMovie
+            position: absolute
+            top: 0
+            right: -50px

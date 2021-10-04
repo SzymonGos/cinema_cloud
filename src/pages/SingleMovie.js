@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { useParams } from 'react-router-dom';
 import FavouriteBtn from '../components/FavouriteBtn';
-import movies from '../services/mockMoviesData';
+import useSingleMovieFetch from '../services/useSingleMovieFetch';
+import { IMAGE_URL, BACKDROP_SIZE } from '../config';
 
 export default function SingleMovie() {
-    const [movie, setMovie] = useState([]);
+
     const { id } = useParams();
-
     const movieId = parseInt(id);
+    const { state } = useSingleMovieFetch(movieId);
 
-    useEffect(() => {
-        const newMovie = movies.find(movie => movie.id === movieId);
-        setMovie(newMovie);
-    }, []);
-
+    console.log(state);
     return (
         <>
-            <div className="backdrop">
+            <div
+                className="backdrop"
+                style={
+                    state && { backgroundImage: `url(${IMAGE_URL}${BACKDROP_SIZE}${state.backdrop_path})` }
+                }
+            >
                 <div className="backdrop__shadow-top"></div>
                 <div className='backdrop__rating'>
                     <ul>
@@ -28,20 +30,22 @@ export default function SingleMovie() {
                             />
                         </li>
                         <li>
-                            <h5 className='backdrop__movie-rating'>9.0</h5>
+                            {state && <h5 className='backdrop__movie-rating'>{state.vote_average}</h5>}
                         </li>
                         <li>
                             <h6 className='backdrop__max-rating'>/10</h6>
                         </li>
                     </ul>
-                    <div className="backdrop__max-rating"><p>300 Ratings</p></div>
+                    {state && <div className="backdrop__max-rating"><p>{state.vote_count} Ratings</p></div>}
                 </div>
                 <div className="backdrop__shadow-bottom"></div>
                 <div className="backdrop__content">
                     <div className="backdrop__text-box">
                         <div>
-                            <h1 className='title'>{movie.title}</h1>
-                            <FavouriteBtn id={movieId} />
+                            {state && <h1 className='title'>{state.title}</h1>}
+                            <span className='card__favourite--singleMovie'>
+                                <FavouriteBtn id={movieId} />
+                            </span>
                         </div>
                         <span>
                             <p>Directed by <strong>John Smith</strong>,</p>
@@ -51,14 +55,13 @@ export default function SingleMovie() {
                         </span>
                     </div>
                     <div className="backdrop__plot-md-up">
-                        <p className='paragraph'>Amazing description text about selected movie for this hero image banner.mazing description text about selected movie for this hero image banner. Amazing description text about selected movie for this hero image banner. Amazing description text about selected movie for this hero image banner</p>
+                        {state && <p className='paragraph'>{state.overview}</p>}
                     </div>
                 </div>
             </div>
             <section className='plot'>
                 <h2 className='plot__title'>Plot</h2>
-                <p className='paragraph'>
-                    Amazing description text about selected movie for this hero image banner.mazing description text about selected movie for this hero image banner. Amazing description text about selected movie for this hero image banner. Amazing description text about selected movie for this hero image banner.</p>
+                {state && <p className='paragraph'>{state.overview}</p>}
 
             </section>
         </>

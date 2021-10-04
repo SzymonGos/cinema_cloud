@@ -4,7 +4,7 @@ import FavouriteBtn from './FavouriteBtn';
 
 
 
-export default function MovieCard({ id, title, styles }) {
+export default function MovieCard({ id, title, image, styles }) {
     return (
         <div className='card' style={styles}>
             <FavouriteBtn id={id}/>
@@ -13,7 +13,9 @@ export default function MovieCard({ id, title, styles }) {
                 to={`/${id}`}
                 key={id}
             >
-                <div className="card__poster-img"></div>
+                <div className="card__poster-img" style={
+                    image && {backgroundImage: `url(${image})`}
+                }></div>
                 <div className="card__body">
                     <h3 className="card__title">{title}</h3>
                 </div>
