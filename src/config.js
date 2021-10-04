@@ -11,4 +11,6 @@ const POPULAR_MOVIES_URL = `${API_URL}movie/popular?api_key=${API_KEY}&page=1`;
 const BACKDROP_IMAGE_URL = 'https://image.tmdb.org/t/p/w1280';
 
 // poster_sizes: w92, w154, w185, w342, w500, w780, original
-const POSTER_SIZE = w500
+const POSTER_SIZE = 'w500'
+
+export {API_URL, API_KEY, POPULAR_MOVIES_URL, BACKDROP_IMAGE_URL, SEARCH_URL}
