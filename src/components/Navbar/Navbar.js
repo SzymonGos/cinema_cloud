@@ -9,7 +9,7 @@ export default function Navbar() {
 
     const store = useStore()
     const [offset, setOffset] = useState(0);
-    
+
 
     useEffect(() => {
         window.onscroll = () => {
@@ -22,9 +22,7 @@ export default function Navbar() {
     return (
         <nav className={`nav ${showBackgroundClass}`}>
             <div className="nav__content">
-                <Link 
-                to={PATH.HOME}
-                >
+                <Link to={PATH.HOME}>
                     <img
                         className='logo-img'
                         src={logo}
