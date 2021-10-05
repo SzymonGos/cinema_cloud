@@ -8,11 +8,8 @@ export default function Movies() {
 
     const { state: { movies , currentPage }, fetchMovies } = useMoviesFetch();
 
-    console.log('CurrentPage', currentPage);
-
     const loadMoreMovies = () => {
         const loadNextPageUrl = `${POPULAR_MOVIES_URL}&page=${currentPage + 1}`
-        console.log(loadNextPageUrl);
         fetchMovies(loadNextPageUrl);
     }
 
