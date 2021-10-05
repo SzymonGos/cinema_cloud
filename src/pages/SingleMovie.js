@@ -46,11 +46,11 @@ export default function SingleMovie() {
                                 <FavouriteBtn id={movieId} />
                             </span>
                         </div>
-                        <span>
+                        {/* <span>
                             <p>Directed by <strong>John Smith</strong>,</p>
-                        </span>
+                        </span> */}
                         <span>
-                            <p>2021</p>
+                            {state && <p>{state.release_date}</p>}
                         </span>
                     </div>
                     <div className="backdrop__plot-md-up">
