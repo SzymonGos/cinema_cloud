@@ -8,15 +8,15 @@ https://github.com/SzymonGos/react_webpack_babel_sass
 
 Home Page
 <p align='center'>
-    <img src='/promo-imgs/homepage.png' width='500'>
+    <img src='/public/promo-imgs/homepage.jpg' width='500'>
 </p>
 
 Movies Page
 <p align='center'>
-    <img src='/promo-imgs/movies.png' width='500'>
+    <img src='/public/promo-imgs/movies.jpg' width='500'>
 </p>
 
 SingleMovie Page
 <p align='center'>
-    <img src='/promo-imgs/singlemovie.png' width='500'>
+    <img src='/public/promo-imgs/singlemovie.jpg' width='500'>
 </p>
