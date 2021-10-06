@@ -1,4 +1,5 @@
 import {createState, useState} from '@hookstate/core'
+import { Persistence } from '@hookstate/persistence';
 
 const initialState = {
     favouriteMovieIds: [],
@@ -8,6 +9,7 @@ const store = createState(initialState);
 
 export function useStore() {
     const withState = useState(store);
+    withState.attach(Persistence('plugin-persisted-data-key'))
 
     return {
         get state() {
