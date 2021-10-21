@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import PATH from '../../services/paths';
-import { useGlobalContext } from '../../services/context';
 import { useStore } from '../../services/storage';
 
 export default function MenuItems() {
 
     const store = useStore()
-
-    // const { isOpen, openModal } = useGlobalContext();
 
     return (
         <>
