@@ -29,9 +29,8 @@ export function useStore() {
             store.favouriteMovieIds.set(result);
         },
 
-        toggleModal() {
-            let toggle = this.state.isOpen;
-            store.isOpen.set(!toggle);
+        toggleModal(toggle) {
+            store.isOpen.set(toggle);
         }
     }
 }

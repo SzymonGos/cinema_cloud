@@ -1,31 +1,24 @@
 .overlay
     height: 100vh
     width: 100vw
+    overflow-y: scroll
     position: fixed
     z-index: 999
-    background-color: $main-white
+    background-color: $standard-white
     animation: fadein .3s
-
     @keyframes fadein
-        from
+        0%
             opacity: 0
-        to  
+        100% 
             opacity: 1
 .hidden
     display: none
-    animation: fadeout .3s
-
-    @keyframes fadeout
-        from
-            opacity: 1
-        to  
-            opacity: 0
 
 .form
     padding: .75rem 0
     border-bottom: .0625rem solid $light-grey
     position: relative
-
+    margin-bottom: 2.5rem
     &--active::after
         position: absolute
         bottom: -2px
@@ -33,6 +26,7 @@
         display: block
         height: 2px
         width: 100%
+        background: $main-gold
         animation: loadBar .5s 
         @keyframes loadBar
             0%
@@ -61,7 +55,7 @@
         color: $main-black
         line-height: 1.5rem
         width: calc(100% - 1rem)
-        background-color: $main-white
+        background-color: $standard-white
         letter-spacing: .5px
         border: 0
         outline: none
@@ -81,3 +75,26 @@
     font-size: 1.2rem
     color: $main-grey
     cursor: pointer
+    
+@include breakpoint-sm-up
+    .content
+        padding: 0 2rem
+    
+    .btn-close
+        top: 1rem
+        right: 2rem
+        font-size: 1.8rem
+    
+    .form
+        padding: 1rem 0
+
+@include breakpoint-lg-up
+    .content
+        @include content
+        position: relative
+
+    .form
+        margin-bottom: 4rem
+        &__input
+            font-size: 4.5rem
+            height: 8rem

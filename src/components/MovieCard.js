@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import FavouriteBtn from './FavouriteBtn';
+import { useStore } from '../services/storage';
 
+export default function MovieCard({ id, title, name, image, styles }) {
 
+    const store = useStore()
 
-export default function MovieCard({ id, title, image, styles }) {
     return (
         <div className='card' style={styles}>
             <FavouriteBtn id={id}/>
@@ -12,6 +14,7 @@ export default function MovieCard({ id, title, image, styles }) {
                 className='card__link'
                 to={`/${id}`}
                 key={id}
+                onClick={() => store.toggleModal(false)}
             >
                 <div className="card__poster-img" style={
                     image && {backgroundImage: `url(${image})`}

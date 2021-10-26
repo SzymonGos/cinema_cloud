@@ -23,8 +23,7 @@ export default function MenuItems() {
                 <li className='menu__item'>
                     <FontAwesomeIcon
                         icon={faSearch}
-                        // onClick={openModal}
-                        onClick={() => store.toggleModal()}
+                        onClick={() => store.toggleModal(true)}
                     >
                     </FontAwesomeIcon>
                 </li>
