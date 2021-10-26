@@ -3,60 +3,27 @@ import "slick-carousel/slick/slick.scss";
 import "slick-carousel/slick/slick-theme.scss";
 import Slider from "react-slick";
 import MovieCard from '../MovieCard';
-import { v4 as uuidv4 } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import movies from '../../services/mockMoviesData';
 
-// Remove list when fetch data
-const movies = [
-    {
-        title: 'Movie 1'
-    },
-    {
-        title: 'Movie 2'
-    },
-    {
-        title: 'Movie 3'
-    },
-    {
-        title: 'Movie 4'
-    },
-    {
-        title: 'Movie 5'
-    },
-    {
-        title: 'Movie 6'
-    },
-    {
-        title: 'Movie 7'
-    },
-    {
-        title: 'Movie 8'
-    },
-    {
-        title: 'Movie 9'
-    },
-    {
-        title: 'Movie 10'
-    }
-];
 
 const ArrowLeft = (props) => {
     return (
-        <FontAwesomeIcon 
-        className='slick-arrow prev'
-        icon={faAngleLeft}    
-        onClick={props.onClick}
+        <FontAwesomeIcon
+            className='slick-arrow prev'
+            icon={faAngleLeft}
+            onClick={props.onClick}
         />
     )
 };
 
 const ArrowRight = (props) => {
     return (
-        <FontAwesomeIcon 
-        className='slick-arrow next'
-        icon={faAngleRight}   
-        onClick={props.onClick}
+        <FontAwesomeIcon
+            className='slick-arrow next'
+            icon={faAngleRight}
+            onClick={props.onClick}
         />
     )
 }
@@ -68,7 +35,7 @@ export default function Carousel() {
         speed: 600,
         slidesToShow: 4,
         slidesToScroll: 4,
-        nextArrow: <ArrowRight/>,
+        nextArrow: <ArrowRight />,
         prevArrow: <ArrowLeft />,
         responsive: [
             {
@@ -101,10 +68,15 @@ export default function Carousel() {
     return (
         <div className='carousel-content'>
             <Slider {...settings}>
-                {movies.map((movie) => <MovieCard  key={uuidv4()}
-                {...movie}
-                styles={{'margin':'2rem 0'}}
-                 />)}
+                {movies.map((movie, index) =>
+                        <MovieCard
+                            key={index}
+                            title={movie.title}
+                            id={movie.id}
+                            styles={{ 'margin': '2rem 0' }}
+                        />
+                    
+                )}
             </Slider>
         </div>
     )

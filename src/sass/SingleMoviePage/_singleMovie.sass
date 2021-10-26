@@ -48,33 +48,39 @@
 
 
 
-@include breakpoint-sm-up
+@include breakpoint-xs-up
 
     .backdrop__rating
-        padding: 5rem 0
+        padding: 5rem 1.5rem
         
 
     .backdrop__text-box
-        padding: 0 0 4rem
-        bottom: 4rem
+        padding: 0 0 4rem 1.5rem
 
+@include breakpoint-md-up
     .plot
         display: none
 
-    .backdrop__plot-md-up
-        @include text-box
-        display: inline-block
-        width: 500px
-        right: 0
-        padding: 0 3rem 4rem
+    .backdrop
+        margin-bottom: 3rem
 
+        &__plot-md-up
+            @include text-box
+            display: inline-block
+            width: 500px
+            right: 0
+            padding: 0 3rem 4rem
 
     .plot__title
         display: inline
         margin: 0
         color: $main-white
+        
 
 @include breakpoint-lg-up
-    .backdrop__plot-md-up
-        width: 700px
+    .backdrop
+        margin-bottom: 4rem
+    
+        &__plot-md-up
+            width: 700px
 
