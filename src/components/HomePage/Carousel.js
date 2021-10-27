@@ -3,9 +3,11 @@ import "slick-carousel/slick/slick.scss";
 import "slick-carousel/slick/slick-theme.scss";
 import Slider from "react-slick";
 import MovieCard from '../MovieCard';
+import useMoviesFetch from '../../services/useMoviesFetch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { IMAGE_URL, POSTER_SIZE } from '../../config';
+import Spinner from '../Spinner';
 
 
 const ArrowLeft = (props) => {
@@ -29,6 +31,8 @@ const ArrowRight = (props) => {
 }
 
 export default function Carousel({movies}) {
+
+    const { isLoading } = useMoviesFetch();
 
     const settings = {
         dots: false,
@@ -68,6 +72,7 @@ export default function Carousel({movies}) {
 
     return (
         <div className='carousel-content'>
+        {isLoading && <Spinner />}
             {movies && <Slider {...settings}>
                 {movies.slice(0,10).map((movie, index) =>
                         <MovieCard

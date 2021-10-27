@@ -5,12 +5,13 @@ import MovieCard from '../MovieCard';
 import { useStore } from '../../services/storage';
 import { SEARCH_URL, IMAGE_URL, POSTER_SIZE } from '../../config';
 import useMoviesFetch from '../../services/useMoviesFetch';
+import Spinner from '../Spinner';
 
 const placeHolder = 'https://dummyimage.com/500x750/262626/f4c518.jpg&text=NO+PHOTO+AVAILABLE';
 
 export default function SearchForm() {
 
-    const { state: { movies, currentPage }, fetchMovies } = useMoviesFetch();
+    const { state: { movies, currentPage }, isLoading, fetchMovies } = useMoviesFetch();
     const store = useStore()
     const isModalOpen = store.state.isOpen;
     const [focused, setFocused] = useState(null);
@@ -25,11 +26,12 @@ export default function SearchForm() {
         if (query.length > 0) return fetchMovies(SEARCH_URL + query);
     }
 
-    console.log(movies);
     const loadMoreMovies = () => {
         const loadNextPageUrl = `${SEARCH_URL}${query}&page=${currentPage + 1}`;
         fetchMovies(loadNextPageUrl);
     }
+
+    console.log(movies);
 
     return (
         <section className={`${isOpen}`}>
@@ -58,6 +60,7 @@ export default function SearchForm() {
                 >
                     <FontAwesomeIcon icon={faTimes} />
                 </div>
+                {isLoading && <Spinner/>}
                 {(query.length > 1) &&
                     <div className="movies__content" style={{marginBottom: '4rem'}}>
                         {movies && <div className="grid">
