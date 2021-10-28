@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import MovieCard from '../MovieCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
-import movies from '../../services/mockMoviesData';
+import { IMAGE_URL, POSTER_SIZE } from '../../config';
 
 
 const ArrowLeft = (props) => {
@@ -28,7 +28,8 @@ const ArrowRight = (props) => {
     )
 }
 
-export default function Carousel() {
+export default function Carousel({movies}) {
+
     const settings = {
         dots: false,
         infinite: true,
@@ -67,17 +68,18 @@ export default function Carousel() {
 
     return (
         <div className='carousel-content'>
-            <Slider {...settings}>
-                {movies.map((movie, index) =>
+            {movies && <Slider {...settings}>
+                {movies.slice(0,10).map((movie, index) =>
                         <MovieCard
                             key={index}
                             title={movie.title}
                             id={movie.id}
+                            image={`${IMAGE_URL}${POSTER_SIZE}${movie.poster_path}`}
                             styles={{ 'margin': '2rem 0' }}
                         />
                     
                 )}
-            </Slider>
+            </Slider>}
         </div>
     )
 }

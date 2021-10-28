@@ -10,18 +10,10 @@
         max-width: 1280px
         margin: 0 auto
 
-// @mixin content-sm
-//     max-width: 700px
-//     margin: 0 auto
-
-// @mixin content-md
-//     max-width: 992px
-//     margin: 0 auto
-
 // hero && backdrop
 @mixin shadow-top
     background: linear-gradient( to bottom, rgba(0, 0, 0, 0.35) 0%, transparent 100% )
-    height: 160px
+    height: 200px
     width: 100%
     position: absolute
     top: 0
@@ -64,7 +56,7 @@
 
 @mixin max-rating
     font-weight: 200
-    opacity: 0.6
+    opacity: 0.7
     font-size: 1.1rem 
     float: right
         
@@ -78,3 +70,13 @@
     bottom: 0px
     padding: 1.3rem
     z-index: 2
+
+@mixin hero-animation
+    animation: heroBanner 1s
+
+    @keyframes heroBanner 
+        from 
+            opacity: 0
+    
+        to 
+            opacity: 1
