@@ -1,0 +1,78 @@
+.login
+  height: 100vh
+  width: 100vw
+  background-size: cover
+  background-position: center
+  padding: 5rem 0
+
+  &__action
+    width: 100%
+    padding: 5rem 0
+    background-color: $standard-white
+    box-shadow: 0 15px 30px 0 rgb(0 0 0 / 25%)
+
+  &__title
+    font-size: 1.5rem
+    margin-bottom: 2rem 
+    font-weight: 600
+    text-align: center
+    text-transform: capitalize
+
+  &__auth-wrapper
+    padding: 0 1rem
+    
+
+  &__item
+    margin-bottom: 2rem
+    padding: .75rem 2rem
+    border: 1px solid $light-grey
+    border-radius: 5px
+    list-style: none
+    cursor: pointer
+
+  &__icon
+    color: $main-gold 
+
+  &__btn-text
+    margin-left: 1rem
+    color: $main-black
+    letter-spacing: .5px
+
+@include breakpoint-xs-up
+  .login
+    padding: 7rem 0
+
+    &__title
+      margin-bottom: 3rem 
+      font-size: 2rem
+
+    &__auth-wrapper
+      padding: 0 2rem
+
+    &__icon
+      font-size: 1.5rem
+
+    &__btn-text
+      margin-left: 2rem
+      font-size: 1.5rem
+
+@include breakpoint-sm-up
+  .login  
+    &__action
+      border-radius: 5px
+      
+
+@include breakpoint-md-up
+  .login
+    display: flex
+    justify-content: center
+
+    &__action
+      width: 600px
+      padding: 6rem 2rem 7rem
+      height: fit-content      
+      
+    &__item
+      padding: .75rem 3rem
+    &__btn-text
+      margin-left: 5rem
