@@ -4,6 +4,7 @@ import { Persistence } from '@hookstate/persistence';
 const initialState = {
     favouriteMovieIds: [],
     isOpen: false,
+    isMenuOpen: false,
 }
 
 const store = createState(initialState);
@@ -29,8 +30,12 @@ export function useStore() {
             store.favouriteMovieIds.set(result);
         },
 
-        toggleModal(toggle) {
+        toggleSearchModal(toggle) {
             store.isOpen.set(toggle);
+        },
+
+        toggleMobileMenu(test) {
+            store.isMenuOpen.set(test);
         }
     }
 }

@@ -17,9 +17,9 @@ export default function SearchForm() {
     const [focused, setFocused] = useState(null);
     const [query, setQuery] = useState('');
 
-    const isOpen = isModalOpen ? "overlay" : "overlay hidden";
+    const isSearchModalOpen = isModalOpen ? "overlay" : "overlay hidden";
     const toggle = focused ? "form form--active" : "form form--inactive"
-    const isActive = (focused == null) ? "form" : toggle;
+    const isInputActive = (focused == null) ? "form" : toggle;
 
     const handleChange = (e) => {
         setQuery(e.target.value.trimStart());
@@ -33,11 +33,11 @@ export default function SearchForm() {
 
 
     return (
-        <section className={`${isOpen}`}>
+        <section className={`${isSearchModalOpen}`}>
             <div className="content">
                 <form
                     autoComplete='off'
-                    className={`${isActive}`}
+                    className={`${isInputActive}`}
                     onFocus={() => setFocused(true)}
                     onBlur={() => setFocused(false)}
                     onSubmit={(e) => e.preventDefault()}
@@ -53,7 +53,7 @@ export default function SearchForm() {
                 <div
                     className='btn-close'
                     onClick={() => {
-                        store.toggleModal(false);
+                        store.toggleSearchModal(false);
                         setFocused(null);
                     }}
                 >
