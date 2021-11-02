@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Footer from './components/Footer';
 import Movies from './pages/Movies';
 import SingleMovie from './pages/SingleMovie';
+import LoginPanel from './pages/LoginPanel';
 import {
     BrowserRouter as Router,
     Switch,
@@ -21,6 +22,9 @@ export default function App() {
                 </Route>
                 <Route path={PATH.MOVIES}>
                     <Movies />
+                </Route>
+                <Route path={PATH.LOGIN_PANEL}>
+                    <LoginPanel />
                 </Route>
                 <Route
                     path={PATH.SINGLE_MOVIE}

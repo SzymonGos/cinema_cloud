@@ -4,6 +4,7 @@
     width: 100%
     background-size: cover !important
     background-position: center !important
+    background-color: $main-black
     @include hero-animation
     
     &__content
@@ -51,13 +52,12 @@
 
 
 @include breakpoint-xs-up
-
-    .backdrop__rating
-        padding: 5rem 1.5rem
-        
-
-    .backdrop__text-box
-        padding: 0 0 4rem 1.5rem
+    .backdrop
+        &__rating
+            padding: 5rem 1.5rem
+        &__text-box
+            padding: 0 0 4rem 1.5rem
+            max-width: 400px
 
 @include breakpoint-md-up
     .plot
@@ -83,6 +83,10 @@
     .backdrop
         margin-bottom: 4rem
     
+        &__text-box
+            padding: 0 0 3rem 0
+            max-width: 400px
+
         &__plot-md-up
             width: 700px
 

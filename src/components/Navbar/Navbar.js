@@ -4,6 +4,7 @@ import logo from '../../assets/images/cinemacloud.png';
 import { Link } from 'react-router-dom';
 import { useStore } from '../../services/storage';
 import PATH from '../../services/paths';
+import SearchForm from './SearchForm';
 
 export default function Navbar() {
 
@@ -20,22 +21,25 @@ export default function Navbar() {
     const showBackgroundClass = offset > 30 ? "nav nav-background" : "";
 
     return (
-        <nav className={`nav ${showBackgroundClass}`}>
-            <div className="nav__content">
-                <Link to={PATH.HOME}>
-                    <img
-                        className='logo-img'
-                        src={logo}
-                        alt="cinemacloud"
-                    />
-                </Link>
-                <div>
+        <>
+            <nav className={`nav ${showBackgroundClass}`}>
+                <div className="nav__content">
+                    <Link to={PATH.HOME}>
+                        <img
+                            className='logo-img'
+                            src={logo}
+                            alt="cinemacloud"
+                        />
+                    </Link>
                     <div>
-                        <h4>Stars: {store.state.favouriteMovieIds.length}</h4>
+                        <div>
+                            <h4>Stars: {store.state.favouriteMovieIds.length}</h4>
+                        </div>
                     </div>
+                    <MenuItems />
                 </div>
-                <MenuItems />
-            </div>
-        </nav>
+            </nav>
+            <SearchForm />
+        </>
     )
 }

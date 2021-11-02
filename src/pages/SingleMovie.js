@@ -46,9 +46,6 @@ export default function SingleMovie() {
                                 <FavouriteBtn id={movieId} />
                             </span>
                         </div>
-                        {/* <span>
-                            <p>Directed by <strong>John Smith</strong>,</p>
-                        </span> */}
                         <span>
                             {state && <p>{state.release_date}</p>}
                         </span>

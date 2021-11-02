@@ -1,7 +1,8 @@
 const PATH = {
     HOME: '/',
     MOVIES: '/movies',
-    SINGLE_MOVIE: '/:id'
+    LOGIN_PANEL: '/login',
+    SINGLE_MOVIE: '/:id',
 }
 
 
