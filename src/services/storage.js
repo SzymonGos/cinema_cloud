@@ -34,8 +34,8 @@ export function useStore() {
             store.isOpen.set(toggle);
         },
 
-        toggleMobileMenu(test) {
-            store.isMenuOpen.set(test);
+        toggleMobileMenu(toggleSideMenu) {
+            store.isMenuOpen.set(toggleSideMenu);
         }
     }
 }
