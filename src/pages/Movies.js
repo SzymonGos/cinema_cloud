@@ -18,7 +18,11 @@ export default function Movies() {
     return (
         <>
             <MoviesBanner />
-            {isLoading && <Spinner/> }
+            {isLoading && <Spinner />}
+            <div className="title-wrapper">
+                <h1 className="title">Browse</h1>
+                <div className="underline"></div>
+            </div>
             <section className='movies'>
                 <div className="movies__content">
                     {movies && <div className="grid">

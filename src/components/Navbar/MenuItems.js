@@ -28,15 +28,6 @@ export default function MenuItems() {
                         />
                 </li>
             </ul>
-
-            {/* Stars Counter */}
-            {/* <div>
-                <div className='nav__stars--small-screen'>
-                    <h4>Stars: {store.state.favouriteMovieIds.length}</h4>
-                </div>
-            </div> */}
-            
-            {/* Menu - Desktop */}
             <ul className="menu--desktop">
                 <li className='menu__item'>
                     <Link
