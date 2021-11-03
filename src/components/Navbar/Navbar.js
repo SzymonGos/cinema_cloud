@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useStore } from '../../services/storage';
 import PATH from '../../services/paths';
 import SearchForm from './SearchForm';
+import MenuMobile from './MenuMobile';
 
 export default function Navbar() {
 
@@ -32,7 +33,7 @@ export default function Navbar() {
                         />
                     </Link>
                     <div>
-                        <div>
+                        <div className='nav__stars'>
                             <h4>Stars: {store.state.favouriteMovieIds.length}</h4>
                         </div>
                     </div>
@@ -40,6 +41,7 @@ export default function Navbar() {
                 </div>
             </nav>
             <SearchForm />
+            <MenuMobile />
         </>
     )
 }

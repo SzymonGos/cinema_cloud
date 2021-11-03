@@ -11,7 +11,11 @@
         @include content
         display: flex
         justify-content: space-between
+        align-items: center
     
+    &__stars
+        display: none
+
 .logo-img
     max-width: 150px
 
@@ -19,9 +23,12 @@
     display: flex 
     align-items: center
     list-style: none
+
+    &--desktop
+        display: none
         
     &__item
-        margin-right: 1rem
+        margin-right: 1.5rem
         cursor: pointer
         
         &__link
@@ -32,15 +39,54 @@
 
         &:hover
             color: $main-gold !important
-                
+    
+    &__overlay-mobile
+        height: 100%
+        width: 100vw
+        left: 0
+        overflow-y: auto
+        position: fixed
+        z-index: 999
+        background-color: $standard-white
+        transition: left .3s
+
+        &--hide
+            height: 100%
+            width: 100vw
+            left: -100%
+            overflow-y: auto
+            position: fixed
+            z-index: 999
+            background-color: $standard-white
+            transition: left .3s
+
+
 .nav-background
     background: $main-black
     transition: 1s cubic-bezier(.4,.3,0,1)
 
-@include breakpoint-md-up
-    
+@include breakpoint-md-up    
     .logo-img
         max-width: 200px
     
     .menu__item
         margin-right: 1.5rem
+
+@include breakpoint-lg-up
+    .nav
+        &__stars
+            display: block
+
+    .menu
+        display: none
+
+        &--desktop
+            display: flex
+            list-style: none
+
+        &__overlay-mobile
+            display: none
+            
+            &--hide
+                display: none
+

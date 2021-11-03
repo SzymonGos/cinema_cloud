@@ -14,7 +14,7 @@ export default function MovieCard({ id, title, name, image, styles }) {
                 className='card__link'
                 to={`/${id}`}
                 key={id}
-                onClick={() => store.toggleModal(false)}
+                onClick={() => store.toggleSearchModal(false)}
             >
                 <div className="card__poster-img" style={
                     image && {backgroundImage: `url(${image})`}
