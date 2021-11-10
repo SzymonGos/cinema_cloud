@@ -1,6 +1,5 @@
 import React from 'react'
 import MovieCard from '../components/MovieCard';
-import MoviesBanner from '../components/MoviesBanner';
 import Spinner from '../components/Spinner';
 import { IMAGE_URL, POPULAR_MOVIES_URL, POSTER_SIZE } from '../config';
 import useMoviesFetch from '../services/useMoviesFetch';
@@ -17,10 +16,10 @@ export default function Movies() {
     }
     return (
         <>
-            <MoviesBanner />
+            <div className="movies-background"></div>
             {isLoading && <Spinner />}
             <div className="title-wrapper">
-                <h1 className="title">Browse</h1>
+                <h1 className="title">Browse Movies</h1>
                 <div className="underline"></div>
             </div>
             <section className='movies'>

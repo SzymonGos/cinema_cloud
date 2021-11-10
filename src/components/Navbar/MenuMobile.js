@@ -67,6 +67,7 @@ export default function MenuMobile() {
               className="mobile-menu__icon"
             />
             <Link
+              to={PATH.USER_PANEL}
               className="mobile-menu__link"
               onClick={() => store.toggleMobileMenu(false)}
             >
@@ -79,6 +80,7 @@ export default function MenuMobile() {
               className="mobile-menu__icon"
             />
             <Link
+              // to={}
               className="mobile-menu__link"
               onClick={() => store.toggleMobileMenu(false)}
             >

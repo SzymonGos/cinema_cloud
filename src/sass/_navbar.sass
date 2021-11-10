@@ -38,7 +38,7 @@
             margin-right: 0
 
         &:hover
-            color: $main-gold !important
+            color: $main-gold !important    
     
     &__overlay-mobile
         height: 100%
@@ -106,7 +106,19 @@
 
         &--desktop
             display: flex
+            align-items: center
             list-style: none
+
+        &__btn
+            padding: .4rem 1rem
+            background-color: $main-gold
+            color: $main-black
+            font-weight: 600
+            letter-spacing: 1px
+            border-radius: 5px
+
+            &:hover
+                filter: brightness(.9)
 
         &__overlay-mobile
             display: none

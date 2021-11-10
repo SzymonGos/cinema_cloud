@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars, faUserMinus, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars, faFilm } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import PATH from '../../services/paths';
 import { useStore } from '../../services/storage';
@@ -22,10 +22,10 @@ export default function MenuItems() {
                     </FontAwesomeIcon>
                 </li>
                 <li className='menu__item'>
-                    <FontAwesomeIcon 
-                        icon={faBars} 
-                        onClick={() => store.toggleMobileMenu(true)}    
-                        />
+                    <FontAwesomeIcon
+                        icon={faBars}
+                        onClick={() => store.toggleMobileMenu(true)}
+                    />
                 </li>
             </ul>
             <ul className="menu--desktop">
@@ -34,7 +34,10 @@ export default function MenuItems() {
                         className='nav__link'
                         to={PATH.MOVIES}
                     >
-                        <h3 className='nav__item'>Movies</h3>
+                        <FontAwesomeIcon
+                            style={{ fontSize: '1.3rem' }}
+                            icon={faFilm}
+                        />
                     </Link>
                 </li>
                 <li className='menu__item'>
@@ -44,9 +47,10 @@ export default function MenuItems() {
                     >
                     </FontAwesomeIcon>
                 </li>
-                <li className='menu__item'>
+                <li className='menu__item'>                     
+                    {/* Add user Profile Panel */}
                     <Link to={PATH.LOGIN_PANEL}>
-                        <FontAwesomeIcon icon={faUserPlus} />
+                        <div className="menu__btn">Login</div>
                     </Link>
                 </li>
             </ul>
