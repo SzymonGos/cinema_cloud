@@ -93,8 +93,27 @@
     .logo-img
         max-width: 200px
     
-    .menu__item
-        margin-right: 1.5rem
+    .menu
+        &__item
+            margin-right: 1.5rem
+
+        &__overlay
+            position: fixed
+            
+        &__options
+            position: relative
+            top: 0.5rem
+            right: 2.5rem
+            background-color: $main-black
+            list-style: none
+            font-size: 1.2rem
+        
+            li            
+                padding: 1rem 2rem
+                cursor: pointer
+
+                &:hover
+                    background-color: $main-grey
 
 @include breakpoint-lg-up
     .nav
@@ -103,6 +122,7 @@
 
     .menu
         display: none
+        position: relative
 
         &--desktop
             display: flex
@@ -126,3 +146,30 @@
             &--hide
                 display: none
 
+        &__user
+            display: flex
+            align-items: center
+            cursor: pointer
+
+            h5
+                font-size: 1.4rem
+                font-weight: 200
+                text-transform: capitalize
+
+            &:hover
+                color: $main-gold
+            
+        &__arrow
+            margin: 0 0 .2rem .5rem
+
+    .arrowUp
+        transform: rotateX(180deg)
+
+    .arrowDown
+        transform: rotateX(0deg)
+                
+    .optionsOn
+        display: block
+        
+    .optionsOff
+        display: none

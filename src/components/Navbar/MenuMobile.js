@@ -71,7 +71,7 @@ export default function MenuMobile() {
               className="mobile-menu__link"
               onClick={() => store.toggleMobileMenu(false)}
             >
-              Profile
+              My Profile
             </Link>
           </li>
           <li>
