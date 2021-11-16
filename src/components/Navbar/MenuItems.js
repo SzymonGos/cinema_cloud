@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars, faFilm, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
@@ -10,10 +10,25 @@ export default function MenuItems() {
     const store = useStore()
     const menu = store.state.isMenuOpen;
     const [isOpen, setIsOpen] = useState(false);
-    console.log(isOpen);
+    const menuRef = useRef(null);
 
     const flipArrow = isOpen ? 'arrowUp' : 'arrowDown';
-    const dropMenu = isOpen ? 'optionsOn' : 'optionsOff';
+    const expandMenu = isOpen ? 'optionsOn' : 'optionsOff';
+   
+    const toggleDropDownMenu = (e) => {
+        if(menuRef.current && !menuRef.current.contains(e.target)){
+            setIsOpen(!isOpen)
+        }
+    }
+
+    useEffect(() =>{
+        if(isOpen) return document.addEventListener('click', toggleDropDownMenu);
+        return () => {
+            document.removeEventListener('click', toggleDropDownMenu);
+        }
+    },[isOpen, menuRef])
+
+
     return (
         <>
             <ul className="menu">
@@ -56,10 +71,11 @@ export default function MenuItems() {
                         <div className="menu__btn">Login</div>
                     </Link>
                 </li> */}
-                {/* User Button */}
+                {/* User Account Button */}
                 <li>
                     <div
                         className="menu__user"
+                        ref={menuRef}
                         onClick={() => setIsOpen(!isOpen)}
                     >
                         <h5>Name</h5>
@@ -67,15 +83,15 @@ export default function MenuItems() {
                             icon={faCaretDown}
                             className={`menu__arrow ${flipArrow}`} />
                     </div>
-                    <div className={`menu__overlay ${dropMenu}`}>
+                    <div className={`menu__overlay ${expandMenu}`}>
                         <ul className='menu__options'>
-                            <li>
-                                <Link 
-                                    to={PATH.USER_PANEL}
-                                    onClick={() => setIsOpen(!isOpen)}>
+                            <Link
+                                to={PATH.USER_PANEL}
+                                >
+                                <li>
                                     My Profile
-                                </Link>
-                            </li>
+                                </li>
+                            </Link>
                             <li>Logout</li>
                         </ul>
                     </div>
