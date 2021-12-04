@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import FavouriteBtn from '../components/FavouriteBtn';
 import useSingleMovieFetch from '../services/useSingleMovieFetch';
-import { IMAGE_URL, BACKDROP_SIZE } from '../config';
+import { IMAGE_URL, BACKDROP_SIZE } from '../config/config';
 
 export default function SingleMovie() {
 

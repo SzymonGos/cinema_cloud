@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { API_URL, API_KEY } from "../config";
+import { API_URL, API_KEY } from "../config/config";
 
 const useSingleMovieFetch = (movieId) => {
     const [state, setState] = useState({});

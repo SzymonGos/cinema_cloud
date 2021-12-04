@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { POPULAR_MOVIES_URL } from "../config";
+import { POPULAR_MOVIES_URL } from "../config/config";
 
 const useMoviesFetch = () => {
     const [state, setState] = useState({});

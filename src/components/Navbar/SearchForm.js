@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import MovieCard from '../MovieCard';
 import { useStore } from '../../services/storage';
-import { SEARCH_URL, IMAGE_URL, POSTER_SIZE } from '../../config';
+import { SEARCH_URL, IMAGE_URL, POSTER_SIZE } from '../../config/config';
 import useMoviesFetch from '../../services/useMoviesFetch';
 import Spinner from '../Spinner';
 

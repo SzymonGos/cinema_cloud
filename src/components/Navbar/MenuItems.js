@@ -66,13 +66,14 @@ export default function MenuItems() {
                     </FontAwesomeIcon>
                 </li>
                 {/* Login Button */}
-                {/* <li className='menu__item'>                                         
+                <li className='menu__item'>                                         
                     <Link to={PATH.LOGIN_PANEL}>
                         <div className="menu__btn">Login</div>
                     </Link>
-                </li> */}
-                {/* User Account Button */}
-                <li>
+                </li>
+
+                {/* User Account Menu */}
+                {/* <li>
                     <div
                         className="menu__user"
                         ref={menuRef}
@@ -95,7 +96,7 @@ export default function MenuItems() {
                             <li>Logout</li>
                         </ul>
                     </div>
-                </li>
+                </li> */}
             </ul>
         </>
     )

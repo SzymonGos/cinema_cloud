@@ -1,7 +1,7 @@
 import React from 'react'
 import MovieCard from '../components/MovieCard';
 import Spinner from '../components/Spinner';
-import { IMAGE_URL, POPULAR_MOVIES_URL, POSTER_SIZE } from '../config';
+import { IMAGE_URL, POPULAR_MOVIES_URL, POSTER_SIZE } from '../config/config';
 import useMoviesFetch from '../services/useMoviesFetch';
 
 const placeHolder = 'https://dummyimage.com/500x750/262626/f4c518.jpg&text=NO+PHOTO+AVAILABLE';
@@ -14,6 +14,7 @@ export default function Movies() {
         const loadNextPageUrl = `${POPULAR_MOVIES_URL}&page=${currentPage + 1}`
         fetchMovies(loadNextPageUrl);
     }
+    
     return (
         <>
             <div className="movies-background"></div>

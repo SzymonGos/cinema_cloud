@@ -1,5 +1,8 @@
 import { createState, useState } from '@hookstate/core'
 import { Persistence } from '@hookstate/persistence';
+import { addDoc, arrayUnion } from '@firebase/firestore';
+import { db, favColectionRef } from '../config/firebase-config'; 
+
 
 const initialState = {
     favouriteMovieIds: [],
@@ -8,7 +11,7 @@ const initialState = {
 }
 
 const store = createState(initialState);
-
+ 
 export function useStore() {
     const withState = useState(store);
     withState.attach(Persistence('movies'))
