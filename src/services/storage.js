@@ -1,20 +1,28 @@
 import { createState, useState } from '@hookstate/core'
 import { Persistence } from '@hookstate/persistence';
-import { addDoc, arrayUnion } from '@firebase/firestore';
-import { db, favColectionRef } from '../config/firebase-config'; 
+import { auth, userRef } from '../config/firebase-config';
+import { signInWithPopup } from 'firebase/auth';
+import {
+    query,
+    where,
+    addDoc,
+    getDocs
+} from "@firebase/firestore";
+
 
 
 const initialState = {
     favouriteMovieIds: [],
     isOpen: false,
     isMenuOpen: false,
+    user: null,
 }
 
 const store = createState(initialState);
- 
+
 export function useStore() {
     const withState = useState(store);
-    withState.attach(Persistence('movies'))
+    withState.attach(Persistence('state'))
 
     return {
         get state() {
@@ -39,6 +47,27 @@ export function useStore() {
 
         toggleMobileMenu(toggleSideMenu) {
             store.isMenuOpen.set(toggleSideMenu);
-        }
+        },
+
+        async signInWithProvider(provider) {
+            try {
+                const res = await signInWithPopup(auth, provider);
+                const user = res.user;
+                const userQuery = await getDocs(query(userRef, where("userId", "==", user.uid)));
+
+                if (userQuery.docs.length === 0) {
+                    addDoc(userRef, {
+                        userId: user.uid,
+                        name: user.displayName,
+                        email: user.email,
+                        movies: [],
+                    })
+                }
+            }
+            catch (err) {
+                console.error(err);
+                alert(err.message);
+            }
+        },
     }
 }

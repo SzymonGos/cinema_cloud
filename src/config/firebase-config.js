@@ -1,6 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
+import { collection } from "@firebase/firestore";
+import {
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  getAuth,
+} from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
@@ -13,8 +19,18 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
-export const db = getFirestore();
-export const favColectionRef = collection(db, 'favourites');
-
+const db = getFirestore();
+const auth = getAuth();
 const analytics = getAnalytics(app);
+const userRef = collection(db, 'users');
+
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
+
+export {
+  auth,
+  db,
+  userRef,
+  googleProvider,
+  facebookProvider,
+};

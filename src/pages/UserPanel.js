@@ -3,7 +3,6 @@ import defaultUser from '../assets/images/default-user.png';
 import MovieCard from '../components/MovieCard';
 import Spinner from '../components/Spinner';
 import { onSnapshot } from '@firebase/firestore';
-import { db, favColectionRef } from '../config/firebase-config';
 
 
 export default function UserPanel() {
@@ -20,10 +19,9 @@ export default function UserPanel() {
 
   useEffect(() => {
     setTimeout(() => setIsLoading(!isLoading), 1000)
-    getFavouritesMoviesList();
   }, [])
 
-  console.log(favouriteMovies);
+
 
   return (
     <section className='user'>
