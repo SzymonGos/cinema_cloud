@@ -12,7 +12,6 @@ export default function MenuItems() {
     const menuRef = useRef(null);
     const userExist = store.state.user;
     
-    // console.log(userExist);
 
     const flipArrow = isOpen ? 'arrowUp' : 'arrowDown';
     const expandMenu = isOpen ? 'optionsOn' : 'optionsOff';
@@ -99,10 +98,7 @@ export default function MenuItems() {
                                 <li>Logout</li>
                             </ul>
                         </div>
-                    </li>}
-
-
-                {/* User Account Menu */}
+                    </li>}                
             </ul>
         </>
     )

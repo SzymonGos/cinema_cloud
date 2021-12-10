@@ -53,8 +53,10 @@ export function useStore() {
             try {
                 const res = await signInWithPopup(auth, provider);
                 const user = res.user;
+                
+                // send the query to check if there is a doc with user ID.
                 const userQuery = await getDocs(query(userRef, where("userId", "==", user.uid)));
-
+                
                 if (userQuery.docs.length === 0) {
                     addDoc(userRef, {
                         userId: user.uid,
@@ -68,6 +70,14 @@ export function useStore() {
                 console.error(err);
                 alert(err.message);
             }
+        },
+
+        registerNewUser(name, email, password){
+            console.log('new user registration');
+        },
+
+        signInUser(email, password){
+            console.log('user sign in');
         },
     }
 }

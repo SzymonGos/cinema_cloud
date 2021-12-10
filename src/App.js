@@ -6,6 +6,7 @@ import Movies from './pages/Movies';
 import SingleMovie from './pages/SingleMovie';
 import LoginPanel from './pages/LoginPanel';
 import UserPanel from './pages/UserPanel';
+import Register from './pages/Register';
 import {
     BrowserRouter as Router,
     Switch,
@@ -30,10 +31,13 @@ export default function App() {
                 <Route path={PATH.USER_PANEL}>
                     <UserPanel />
                 </Route>
+                <Route path={PATH.REGISTER}>
+                    <Register />
+                </Route>  
                 <Route
                     path={PATH.SINGLE_MOVIE}
                     children={<SingleMovie />}>
-                </Route>
+                </Route>           
             </Switch>
             <Footer />
         </Router>
