@@ -1,7 +1,12 @@
 import { createState, useState } from '@hookstate/core'
 import { Persistence } from '@hookstate/persistence';
 import { auth, userRef } from '../config/firebase-config';
-import { signInWithPopup } from 'firebase/auth';
+import {
+    signInWithPopup,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut
+} from 'firebase/auth';
 import {
     query,
     where,
@@ -53,10 +58,10 @@ export function useStore() {
             try {
                 const res = await signInWithPopup(auth, provider);
                 const user = res.user;
-                
+
                 // send the query to check if there is a doc with user ID.
                 const userQuery = await getDocs(query(userRef, where("userId", "==", user.uid)));
-                
+
                 if (userQuery.docs.length === 0) {
                     addDoc(userRef, {
                         userId: user.uid,
@@ -72,12 +77,35 @@ export function useStore() {
             }
         },
 
-        registerNewUser(name, email, password){
-            console.log('new user registration');
+        async registerNewUser(name, email, password) {
+            try {
+                const res = await createUserWithEmailAndPassword(auth, email, password)
+                const user = res.user;
+
+                addDoc(userRef, {
+                    userId: user.uid,
+                    name,
+                    email,
+                    movies: [],
+                })
+            }
+            catch (err) {
+                console.error(err);
+                alert(err.message);
+            }
         },
 
-        signInUser(email, password){
-            console.log('user sign in');
+        async signInUser(email, password) {
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+              } catch (err) {
+                console.error(err);
+                alert(err.message);
+              }
         },
+
+        logout(){
+            signOut(auth);
+        }
     }
 }

@@ -2,16 +2,18 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars, faFilm, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import PATH from '../../services/paths';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useStore } from '../../services/storage';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from '../../config/firebase-config';
 
 export default function MenuItems() {
 
     const store = useStore();
+    const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
     const menuRef = useRef(null);
-    const userExist = store.state.user;
-    
+    const [user] = useAuthState(auth);
 
     const flipArrow = isOpen ? 'arrowUp' : 'arrowDown';
     const expandMenu = isOpen ? 'optionsOn' : 'optionsOff';
@@ -24,10 +26,12 @@ export default function MenuItems() {
 
     useEffect(() => {
         if (isOpen) return document.addEventListener('click', toggleDropDownMenu);
+        
+        if (!user) return history.push(PATH.HOME);
         return () => {
             document.removeEventListener('click', toggleDropDownMenu);
         }
-    }, [isOpen, menuRef])
+    }, [isOpen, menuRef, user])
 
 
     return (
@@ -66,16 +70,9 @@ export default function MenuItems() {
                     >
                     </FontAwesomeIcon>
                 </li>
-                {/* Login Button */}
 
-                {!userExist
-                    ? <li className='menu__item'>
-                        <Link to={PATH.LOGIN_PANEL}>
-                            <div className="menu__btn">Login</div>
-                        </Link>
-                    </li>
-
-                    : <li>
+                {user
+                    ? <li>
                         <div
                             className="menu__user"
                             ref={menuRef}
@@ -92,13 +89,23 @@ export default function MenuItems() {
                                     to={PATH.USER_PANEL}
                                 >
                                     <li>
-                                        My Profile
+                                        <p>My Profile</p>
                                     </li>
                                 </Link>
-                                <li>Logout</li>
+                                <li
+                                onClick={() => store.logout()}
+                                >
+                                    <p>Logout</p>
+                                </li>
                             </ul>
                         </div>
-                    </li>}                
+                    </li>
+                    : <li className='menu__item'>
+                        <Link to={PATH.LOGIN_PANEL}>
+                            <div className="menu__btn">Login</div>
+                        </Link>
+                    </li>
+                }
             </ul>
         </>
     )

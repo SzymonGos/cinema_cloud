@@ -3,7 +3,7 @@ const PATH = {
     MOVIES: '/movies',
     LOGIN_PANEL: '/login',
     REGISTER: '/register',
-    USER_PANEL: '/user',
+    USER_PANEL: '/dashboard',
     SINGLE_MOVIE: '/:id',
 }
 

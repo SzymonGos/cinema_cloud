@@ -1,17 +1,36 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { Link, useHistory } from 'react-router-dom';
 import loginBackground from '../assets/images/popcorn.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { useStore } from '../services/storage';
-import { googleProvider } from '../config/firebase-config';
+import { auth, googleProvider } from '../config/firebase-config';
 import PATH from '../services/paths';
+import { useAuthState } from "react-firebase-hooks/auth";
+
 
 
 export default function LoginPanel() {
 
   const store = useStore();
+  const history = useHistory();
+  const [email, setEmail] = useState('');
+  const [password, setPasswod] = useState('');
+  const [user, loading, error] = useAuthState(auth);
 
+
+  useEffect(() => {
+    if (loading) {
+      console.log('loading');
+      return;
+    }
+    if (user) {
+      console.log(user);
+      setEmail("");
+      setPasswod("");
+      history.push(PATH.USER_PANEL);
+    }
+  }, [user]);
   return (
     <section
       style={{ backgroundImage: `url(${loginBackground})` }}
@@ -22,19 +41,27 @@ export default function LoginPanel() {
         <div className="login__auth-wrapper">
           <ul>
             <li className="login__item">
-              <form className="login__form">
+              <div
+                className="login__form">
                 <input
                   className="login__input"
                   type="email"
                   placeholder="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required />
                 <input
                   className="login__input"
                   type="password"
                   placeholder="password"
+                  value={password}
+                  onChange={(e) => setPasswod(e.target.value)}
                   required />
-                <button className='login__btn'>Login</button>
-              </form>
+                <button
+                  className='login__btn'
+                  onClick={() => store.signInUser(email, password)}
+                >Login</button>
+              </div>
             </li>
             <li className="login__item">
               <span>Don't have an account? <br /></span>
