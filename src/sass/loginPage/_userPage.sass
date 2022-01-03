@@ -1,0 +1,140 @@
+.user
+  min-height: 100vh
+
+  @include hero-animation
+
+  &__title-background
+    height: 60vh
+    background: linear-gradient(0deg, rgba(255,255,255,1) 12%, rgba(191,191,191,1) 100%, rgba(38,38,38,1) 100%)
+
+  &__details
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+
+  &__img-wrapper
+    width: 120px
+    height: 120px
+    padding: .3rem
+    border: solid transparent
+    border-radius: 100%
+    border-color: $main-gold
+    border-width: .150rem 
+
+  &__img
+    height: 100%
+    width: 100%
+    border-radius: 100%
+    background-color: $standard-white
+    object-fit: contain
+
+  &__title
+    margin-top: 1rem
+    text-align: center
+    
+    h2
+      font-weight: 100
+      text-transform: uppercase
+
+.danger
+  @include content
+  margin-bottom: 3rem
+  
+  &__wrapper
+    margin: 0 1rem
+
+  h2
+    margin-bottom: 1rem
+    font-weight: 500
+
+  &__box
+    padding: 2rem 1rem
+    border: 1px solid $main-red
+    border-radius: 5px
+    
+  &__btn
+    padding: .75rem 1rem
+    background-color: $main-red
+    color: $standard-white
+    font-weight: 600
+    letter-spacing: 1px
+    border: none
+    border-radius: 5px
+    cursor: pointer
+    
+    &:hover
+      filter: brightness(.9)
+
+.favourite-movies-list
+  @include content
+  margin: 3rem 0 3rem
+  padding: 0 1rem
+  text-align: center
+
+.favourite
+  margin: 1rem 0
+  padding: .5rem .5rem
+
+  &:hover
+    box-shadow: 0 10px 30px 0 rgba(0,0,0,.1)
+    border-radius: 5px
+
+  &__ul
+    display: flex
+    flex-direction: row
+    list-style: none
+    justify-content: space-between
+    align-items: center
+
+  &__poster
+    height: auto
+    width: 100px
+
+  &__title
+    margin: 0 .5rem
+
+  & h4
+    
+
+  &__movie-release-date
+    font-size: 1rem
+
+  &__deleteBtn:hover
+    cursor: pointer
+    color: $main-gold
+
+@include breakpoint-md-up
+  .favourite-movies-list
+    margin-bottom: 4rem
+
+  .favourite
+    &__poster
+      width: 150px
+
+    & ul
+      & li:nth-of-type(2)              
+        max-width: 250px
+      
+      &:last-child
+      margin-right: 1rem  
+
+    & h4
+      font-size: 1.3rem
+
+  .danger
+    margin-bottom: 4rem
+
+@include breakpoint-lg-up
+  .favourite-movies-list
+    max-width: 1000px
+    margin-bottom: 5rem
+
+  .favourite
+    &__poster
+      width: 175px
+
+  .danger
+    max-width: 1000px
+    margin-bottom: 5rem

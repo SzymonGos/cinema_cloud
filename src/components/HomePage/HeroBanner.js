@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { IMAGE_URL, BACKDROP_SIZE } from '../../config';
+import { IMAGE_URL, BACKDROP_SIZE } from '../../config/config';
 
 export default function HeroBanner({ heroBanner }) {
 

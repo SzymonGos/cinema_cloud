@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { useStore } from '../../services/storage';
 import PATH from '../../services/paths';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export default function MenuMobile() {
 
   const store = useStore();
+  const history = useHistory();
   const menu = store.state.isMenuOpen;
+  const user = store.state.storageUser;
 
   const isMenuOpen = menu ? "menu__overlay-mobile" : "menu__overlay-mobile--hide";
+
+  useEffect(() => {    
+    if (!user) return history.push(PATH.HOME);
+}, [user])
+
   return (
     <section className={`${isMenuOpen}`}>
       <div className="btn-close">
@@ -21,7 +28,7 @@ export default function MenuMobile() {
       </div>
       <div className="menu-wrapper">
         <ul className="mobile-menu">
-          <li>Stars: {store.state.favouriteMovieIds.length}</li>
+          {user && <li>Stars: {store.state.favouriteMovieIds.length}</li>}
           <li>
             <FontAwesomeIcon
               icon={faAngleRight}
@@ -48,43 +55,52 @@ export default function MenuMobile() {
               Movies
             </Link>
           </li>
-          <li>
-            <FontAwesomeIcon
-              icon={faAngleRight}
-              className="mobile-menu__icon"
-            />
-            <Link
-              to={PATH.LOGIN_PANEL}
-              className="mobile-menu__link"
-              onClick={() => store.toggleMobileMenu(false)}
-            >
-              Login
-            </Link>
-          </li>
-          <li>
-            <FontAwesomeIcon
-              icon={faAngleRight}
-              className="mobile-menu__icon"
-            />
-            <Link
-              className="mobile-menu__link"
-              onClick={() => store.toggleMobileMenu(false)}
-            >
-              Profile
-            </Link>
-          </li>
-          <li>
-            <FontAwesomeIcon
-              icon={faAngleRight}
-              className="mobile-menu__icon"
-            />
-            <Link
-              className="mobile-menu__link"
-              onClick={() => store.toggleMobileMenu(false)}
-            >
-              Logout
-            </Link>
-          </li>
+          {user
+            ? <>
+              <li>
+                <FontAwesomeIcon
+                  icon={faAngleRight}
+                  className="mobile-menu__icon"
+                />
+                <Link
+                  to={PATH.USER_PANEL}
+                  className="mobile-menu__link"
+                  onClick={() => store.toggleMobileMenu(false)}
+                >
+                  My Profile
+                </Link>
+              </li>
+              <li>
+                <FontAwesomeIcon
+                  icon={faAngleRight}
+                  className="mobile-menu__icon"
+                />
+                <Link
+                  // to={}
+                  className="mobile-menu__link"
+                  onClick={() => {
+                    store.logout();
+                    store.toggleMobileMenu(false);
+                  }}
+                >
+                  Logout
+                </Link>
+              </li>
+            </>
+            : <li>
+              <FontAwesomeIcon
+                icon={faAngleRight}
+                className="mobile-menu__icon"
+              />
+              <Link
+                to={PATH.LOGIN_PANEL}
+                className="mobile-menu__link"
+                onClick={() => store.toggleMobileMenu(false)}
+              >
+                Login
+              </Link>
+            </li>
+          }
         </ul>
       </div>
     </section>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import loginBackground from '../assets/images/popcorn.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
@@ -7,22 +7,22 @@ import { useStore } from '../services/storage';
 import { googleProvider } from '../config/firebase-config';
 import PATH from '../services/paths';
 
-
-
-export default function LoginPanel() {
-
+export default function Register() {
+  
   const store = useStore();
   const history = useHistory();
+  const user = store.state.storageUser;
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPasswod] = useState('');
-  const user = store.state.storageUser;
+
+  const register = () => {
+    if(!name && !email && !password) return alert('Fill up details');
+    store.registerNewUser(name, email, password);
+  }
 
   useEffect(() => {
-    if (user) {
-      setEmail("");
-      setPasswod("");
-      history.push(PATH.USER_PANEL);
-    }
+    if (user) return history.push(PATH.USER_PANEL);
   }, [user]);
 
   return (
@@ -31,45 +31,48 @@ export default function LoginPanel() {
       className='login'
     >
       <div className="login__action">
-        <h2 className="login__title">login & add favourite movies</h2>
+        <h2 className="login__title">Create account</h2>
         <div className="login__auth-wrapper">
           <ul>
             <li className="login__item">
-              <div
-                className="login__form">
+              <div className="login__form">
+                <input
+                  className="login__input"
+                  type="text"
+                  placeholder="Your Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required />
                 <input
                   className="login__input"
                   type="email"
-                  placeholder="email"
+                  placeholder="Your Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required />
                 <input
                   className="login__input"
                   type="password"
-                  placeholder="password"
+                  placeholder="Your Password"
                   value={password}
                   onChange={(e) => setPasswod(e.target.value)}
                   required />
-                <button
-                  className='login__btn'
-                  onClick={() => store.signInUser(email, password)}
-                >Login</button>
+                <button 
+                className='login__btn'
+                onClick={register}
+                >
+                Create your CINEMACLOUD account</button>
               </div>
             </li>
             <li className="login__item">
-              <span>Don't have an account? <br /></span>
-              <Link
-                to={PATH.REGISTER}
-                className="login__link"
-              >Register here.</Link>
+            <p className="login__text">OR</p>
             </li>
             <li className="login__item">
               <span className='login__icon'><FontAwesomeIcon icon={faGoogle} /></span>
               <span
                 className='login__btn-text'
                 onClick={() => store.signInWithProvider(googleProvider)}
-              >Login with Google</span>
+              >Sign Up with Google</span>
             </li>
           </ul>
         </div>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import FavouriteBtn from './FavouriteBtn';
 import { useStore } from '../services/storage';
 
-export default function MovieCard({ id, title, name, image, styles }) {
+export default function MovieCard({ id, title, image, styles }) {
 
     const store = useStore()
 

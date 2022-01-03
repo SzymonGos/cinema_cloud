@@ -21,7 +21,12 @@ export default function Footer() {
             </div>
             <div className="footer-content">
                 <div className="credits">
-                    <span>Powered by </span><a href="https://www.themoviedb.org/" target="_blank">TMDb</a>
+                    <span>Powered by </span>
+                    <a
+                    className="credits-link"
+                    href="https://www.themoviedb.org/" 
+                    target="_blank"
+                    >TMDb</a>
                 </div>
                 <div className="copyright">
                     <p>

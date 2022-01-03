@@ -6,7 +6,7 @@ import MovieCard from '../MovieCard';
 import useMoviesFetch from '../../services/useMoviesFetch';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
-import { IMAGE_URL, POSTER_SIZE } from '../../config';
+import { IMAGE_URL, POSTER_SIZE } from '../../config/config';
 import Spinner from '../Spinner';
 
 
