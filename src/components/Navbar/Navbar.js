@@ -11,6 +11,7 @@ export default function Navbar() {
 
     const store = useStore()
     const [offset, setOffset] = useState(0);
+    const user = store.state.storageUser;
 
 
     useEffect(() => {
@@ -20,6 +21,7 @@ export default function Navbar() {
     }, [])
 
     const showBackgroundClass = offset > 30 ? "nav nav-background" : "";
+    
 
     return (
         <>
@@ -34,7 +36,7 @@ export default function Navbar() {
                     </Link>
                     <div>
                         <div className='nav__stars'>
-                            <h4>Stars: {store.state.favouriteMovieIds.length}</h4>
+                            {user && <h4>Stars: {store.state.favouriteMovieIds.length}</h4>}
                         </div>
                     </div>
                     <MenuItems />

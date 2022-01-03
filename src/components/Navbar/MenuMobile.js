@@ -4,15 +4,13 @@ import { faTimes, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { useStore } from '../../services/storage';
 import PATH from '../../services/paths';
 import { Link, useHistory } from 'react-router-dom';
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from '../../config/firebase-config';
 
 export default function MenuMobile() {
 
   const store = useStore();
   const history = useHistory();
   const menu = store.state.isMenuOpen;
-  const [user] = useAuthState(auth);
+  const user = store.state.storageUser;
 
   const isMenuOpen = menu ? "menu__overlay-mobile" : "menu__overlay-mobile--hide";
 
@@ -30,7 +28,7 @@ export default function MenuMobile() {
       </div>
       <div className="menu-wrapper">
         <ul className="mobile-menu">
-          <li>Stars: {store.state.favouriteMovieIds.length}</li>
+          {user && <li>Stars: {store.state.favouriteMovieIds.length}</li>}
           <li>
             <FontAwesomeIcon
               icon={faAngleRight}

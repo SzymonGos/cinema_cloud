@@ -1,46 +1,59 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import defaultUser from '../assets/images/default-user.png';
 import MovieCard from '../components/MovieCard';
 import Spinner from '../components/Spinner';
-import { onSnapshot } from '@firebase/firestore';
-
+import { useStore } from '../services/storage';
+import PATH from '../services/paths';
+import {
+  query,
+  where,
+  onSnapshot
+} from 'firebase/firestore';
+import { userRef } from '../config/firebase-config';
+import FavouriteMovieCard from '../components/FavouriteMovieCard';
 
 export default function UserPanel() {
 
-  const [favouriteMovies, setFavouriteMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const store = useStore();
+  const history = useHistory();
+  const user = JSON.parse(JSON.stringify(store.state.storageUser));
+  const [userData, setUserData] = useState(user);
 
-
-  const getFavouritesMoviesList = () => {
-    onSnapshot(favColectionRef, snapshot => {
-      setFavouriteMovies(snapshot.docs.map(doc => doc.data()))
+  const getRealTimeUserData = () => {
+    const q = query(userRef, where("userId", "==", user.userId));
+    
+    onSnapshot(q, (snapshot) => {
+      snapshot.docs.forEach(doc => {
+        setUserData({ ...doc.data() })       
+      })
     })
   }
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(!isLoading), 1000)
+    if (!user) return history.push(PATH.HOME);
+    getRealTimeUserData();
+
+    return () => {
+      setUserData({});
+    }
   }, [])
-
-
 
   return (
     <section className='user'>
       <header className="user__title-background">
         <div className="user__details">
-          {isLoading
-            ? <Spinner />
-            : <span>
-              <div className="user__img-wrapper">
-                <img
-                  src={defaultUser}
-                  className='user__img'
-                  alt="user" />
-              </div>
-              <div className="user__title">
-                <h2>Your Name</h2>
-              </div>
-            </span>
-          }
+          <span>
+            <div className="user__img-wrapper">
+              <img
+                src={defaultUser}
+                className='user__img'
+                alt="user" />
+            </div>
+            <div className="user__title">
+              <h2>{userData && userData.name}</h2>
+            </div>
+          </span>
         </div>
       </header>
       <main>
@@ -48,18 +61,16 @@ export default function UserPanel() {
           <h1 className="title">Your Favourite Movies</h1>
           <div className="underline"></div>
         </div>
-        {/* {isLoading
-        ? <Spinner/>
-        : <>
-            {favouriteMovies && favouriteMovies.map(({ movies }, idx) => {
-              return <div key={idx}>
-                {movies.map((item, index) => {
-                  return <p key={index}>Signle movie ID: {item}</p>
-                })}
-              </div>
-            })}
-          </>
-        } */}
+        <div className='favourite-movies-list'>
+          {user && userData.movies.length === 0
+            ? <p>List is Empty</p>
+            : user && userData.movies.map((movie, idx) => {
+              return (
+                <FavouriteMovieCard key={idx} favMovies={movie} />
+              )
+            })
+          }
+        </div>
       </main>
       <section className='danger'>
         <div className="danger__wrapper">

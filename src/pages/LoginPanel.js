@@ -4,9 +4,8 @@ import loginBackground from '../assets/images/popcorn.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { useStore } from '../services/storage';
-import { auth, googleProvider } from '../config/firebase-config';
+import { googleProvider } from '../config/firebase-config';
 import PATH from '../services/paths';
-import { useAuthState } from "react-firebase-hooks/auth";
 
 
 
@@ -16,21 +15,16 @@ export default function LoginPanel() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPasswod] = useState('');
-  const [user, loading, error] = useAuthState(auth);
-
+  const user = store.state.storageUser;
 
   useEffect(() => {
-    if (loading) {
-      console.log('loading');
-      return;
-    }
     if (user) {
-      console.log(user);
       setEmail("");
       setPasswod("");
       history.push(PATH.USER_PANEL);
     }
   }, [user]);
+
   return (
     <section
       style={{ backgroundImage: `url(${loginBackground})` }}

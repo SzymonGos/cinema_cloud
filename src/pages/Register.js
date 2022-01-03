@@ -4,15 +4,14 @@ import loginBackground from '../assets/images/popcorn.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { useStore } from '../services/storage';
-import { auth, googleProvider } from '../config/firebase-config';
-import { useAuthState } from "react-firebase-hooks/auth";
+import { googleProvider } from '../config/firebase-config';
 import PATH from '../services/paths';
 
 export default function Register() {
   
   const store = useStore();
   const history = useHistory();
-  const [user] = useAuthState(auth);
+  const user = store.state.storageUser;
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPasswod] = useState('');

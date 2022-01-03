@@ -1,11 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars, faFilm, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars, faFilm, faUser, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import PATH from '../../services/paths';
 import { Link, useHistory } from 'react-router-dom';
 import { useStore } from '../../services/storage';
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from '../../config/firebase-config';
 
 export default function MenuItems() {
 
@@ -13,7 +11,7 @@ export default function MenuItems() {
     const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
     const menuRef = useRef(null);
-    const [user] = useAuthState(auth);
+    const user = store.state.storageUser;
 
     const flipArrow = isOpen ? 'arrowUp' : 'arrowDown';
     const expandMenu = isOpen ? 'optionsOn' : 'optionsOff';
@@ -31,7 +29,7 @@ export default function MenuItems() {
         return () => {
             document.removeEventListener('click', toggleDropDownMenu);
         }
-    }, [isOpen, menuRef, user])
+    }, [isOpen, menuRef])
 
 
     return (
@@ -72,13 +70,15 @@ export default function MenuItems() {
                 </li>
 
                 {user
-                    ? <li>
+                    ? <li className='menu__item'>
                         <div
                             className="menu__user"
                             ref={menuRef}
                             onClick={() => setIsOpen(!isOpen)}
                         >
-                            <h5>Name</h5>
+                            <FontAwesomeIcon
+                            icon={faUser}
+                             />
                             <FontAwesomeIcon
                                 icon={faCaretDown}
                                 className={`menu__arrow ${flipArrow}`} />
