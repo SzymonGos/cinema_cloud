@@ -12,6 +12,9 @@ import {
 } from 'firebase/firestore';
 import { userRef } from '../config/firebase-config';
 import FavouriteMovieCard from '../components/FavouriteMovieCard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function UserPanel() {
 
@@ -19,15 +22,27 @@ export default function UserPanel() {
   const history = useHistory();
   const user = JSON.parse(JSON.stringify(store.state.storageUser));
   const [userData, setUserData] = useState(user);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleDangerModal = isModalOpen ? 'show' : 'hide';
+
+  console.log(isModalOpen);
 
   const getRealTimeUserData = () => {
     const q = query(userRef, where("userId", "==", user.userId));
-    
+
     onSnapshot(q, (snapshot) => {
       snapshot.docs.forEach(doc => {
-        setUserData({ ...doc.data() })       
+        setUserData({ ...doc.data() })
       })
     })
+  }
+
+  const handleDeleteAccount = () => {
+    setIsModalOpen(false);
+    // store.reauthenticateUser();
+    store.deleteAccount();
+    
   }
 
   useEffect(() => {
@@ -76,10 +91,36 @@ export default function UserPanel() {
         <div className="danger__wrapper">
           <h2>Danger Zone</h2>
           <div className="danger__box">
-            <button className='danger__btn'>Delete Account</button>
+            <button
+              className='danger__btn'
+              onClick={() => setIsModalOpen(true)}
+            >Delete Account</button>
           </div>
         </div>
       </section>
+      <div className={`danger-modal ${toggleDangerModal}`}>
+        <div className="danger-modal__box">
+          <FontAwesomeIcon
+            icon={faExclamationCircle}
+            className='danger-modal__alertCircle'
+          />
+          <h3>Are you sure you want to permanently delete your account?</h3>
+          <span>
+            <button
+              className='danger-modal__btn'
+              onClick={handleDeleteAccount}
+            >
+              Yes
+            </button>
+            <button
+              className='danger-modal__btn'
+              onClick={() => setIsModalOpen(false)}
+            >
+              No
+            </button>
+          </span>
+        </div>
+      </div>
     </section>
   )
 }

@@ -6,6 +6,8 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
+    reauthenticateWithCredential,
+    deleteUser,
 } from 'firebase/auth';
 import {
     query,
@@ -15,6 +17,7 @@ import {
     onSnapshot,
     doc,
     updateDoc,
+    deleteDoc,
     arrayUnion,
     arrayRemove,
 } from "@firebase/firestore";
@@ -69,7 +72,7 @@ export function useStore() {
 
         getUserData(user) {
             store.uid.set(user.uid);
-            
+
             const q = query(userRef, where("userId", "==", user.uid));
             onSnapshot(q, (snapshot) => {
                 snapshot.docs.forEach(doc => {
@@ -86,11 +89,11 @@ export function useStore() {
                 console.log(user);
                 store.uid.set(user.uid);
                 const createUserRef = doc(db, 'users', user.uid);
-    
+
                 // send the query to check if there is a doc with user ID.
                 const userQuery = await getDocs(query(userRef, where("userId", "==", user.uid)));
                 this.getUserData(user);
-                                                
+
                 if (userQuery.docs.length === 0) {
                     setDoc(createUserRef, {
                         userId: user.uid,
@@ -142,6 +145,50 @@ export function useStore() {
             signOut(auth);
             store.storageUser.set(null);
             store.favouriteMovieIds.set([]);
+        },
+
+        reauthenticateUser() {
+            const user = auth.currentUser;
+
+            // TODO(you): prompt the user to re-provide their sign-in credentials
+            const credential = promptForCredentials();
+
+            reauthenticateWithCredential(user, credential).then(() => {
+                // User re-authenticated.
+            }).catch((error) => {
+                // An error ocurred
+                // ...
+            });
+
+        },
+
+        //    async deleteAccount() {
+        //         const user = auth.currentUser;
+        //         console.log(user.providerData[0]);
+
+        //         deleteUser(user).then(() => {
+        //             await deleteDoc(doc(db, user.uid))
+        //             console.log('---success: account deleted successfully');
+        //         }).catch((error) => {
+        //             console.log(error.message);
+        //         });
+        //     },
+
+        async deleteAccount() {
+            const user = auth.currentUser;
+            console.log(user.providerData[0]);
+            try {
+                deleteUser(user).then(() => {
+                    deleteDoc(doc(db, 'users', user.uid));
+                    console.log('---success: account deleted successfully');
+                    store.storageUser.set(null);
+                    store.favouriteMovieIds.set([]);                
+                })
+            }
+            catch (err) {
+                console.log(err.message);
+            }
         }
+
     }
 }

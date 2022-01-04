@@ -94,16 +94,67 @@
 
   &__title
     margin: 0 .5rem
-
-  & h4
-    
-
+  
   &__movie-release-date
     font-size: 1rem
 
   &__deleteBtn:hover
     cursor: pointer
     color: $main-gold
+
+
+// danger modal
+
+.danger-modal
+  min-height: 100vh
+  width: 100%
+  position: fixed
+  top: 0
+  z-index: 991
+  background-color: transparent
+  backdrop-filter: blur(5px)
+
+  &__box
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    width: 100%
+    text-align: center
+    z-index: 999
+    padding: 2rem 0
+    background-color: $main-white
+    box-shadow: 0 10px 30px 0 rgba(0,0,0,.1)
+
+    & h3
+      font-weight: 200
+      margin-bottom: 1.5rem
+
+  &__alertCircle
+    font-size: 5rem
+    color: $main-gold
+    margin-bottom: 1.5rem
+
+  &__btn
+    padding: .75rem 2rem
+    font-size: 1.1rem
+    background-color: $main-grey
+    color: $main-white
+    border: none
+    border-radius: 5px
+    cursor: pointer
+
+    &:first-of-type
+      margin-right: 2rem
+      background-color: $main-red
+
+    &:hover
+      filter: brightness(.9)
+.show
+  display: block
+
+.hide
+  display: none
 
 @include breakpoint-md-up
   .favourite-movies-list
@@ -118,7 +169,7 @@
         max-width: 250px
       
       &:last-child
-      margin-right: 1rem  
+        margin-right: 1rem  
 
     & h4
       font-size: 1.3rem
