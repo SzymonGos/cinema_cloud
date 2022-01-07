@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faFacebookSquare, faTwitterSquare, faInstagramSquare } from '@fortawesome/free-brands-svg-icons';
 import { useStore } from '../../services/storage';
 import PATH from '../../services/paths';
 import { Link, useHistory } from 'react-router-dom';
@@ -28,7 +29,7 @@ export default function MenuMobile() {
       </div>
       <div className="menu-wrapper">
         <ul className="mobile-menu">
-          {user && <li>Stars: {store.state.favouriteMovieIds.length}</li>}
+          {user && <h3 className='mobile-menu__stars'>Stars: {store.state.favouriteMovieIds.length}</h3>}
           <li>
             <FontAwesomeIcon
               icon={faAngleRight}
@@ -102,6 +103,21 @@ export default function MenuMobile() {
             </li>
           }
         </ul>
+
+        <div className='mobile-menu__socials'>
+        <span></span>
+          <ul>
+            <li><FontAwesomeIcon 
+              icon={faFacebookSquare}
+            /></li>
+            <li><FontAwesomeIcon 
+              icon={faTwitterSquare}
+            /></li>
+            <li><FontAwesomeIcon 
+              icon={faInstagramSquare}
+            /></li>
+          </ul>
+        </div>
       </div>
     </section>
   )

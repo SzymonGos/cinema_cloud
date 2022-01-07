@@ -40,9 +40,7 @@ export default function UserPanel() {
 
   const handleDeleteAccount = () => {
     setIsModalOpen(false);
-    // store.reauthenticateUser();
     store.deleteAccount();
-    
   }
 
   useEffect(() => {
