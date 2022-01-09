@@ -26,8 +26,6 @@ export default function UserPanel() {
 
   const toggleDangerModal = isModalOpen ? 'show' : 'hide';
 
-  console.log(isModalOpen);
-
   const getRealTimeUserData = () => {
     const q = query(userRef, where("userId", "==", user.userId));
 

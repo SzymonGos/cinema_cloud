@@ -27,12 +27,19 @@ const initialState = {
     isMenuOpen: false,
     uid: '',
     storageUser: {},
-}
+};
+
+const errState = {
+    errMessage: '',
+};
 
 const store = createState(initialState);
+const errorMsg = createState(errState);
 
 export function useStore() {
     const withState = useState(store);
+    const errorState = useState(errorMsg);
+
     withState.attach(Persistence('state'))
 
     return {
@@ -40,12 +47,14 @@ export function useStore() {
             return withState.get();
         },
 
+        get errorState() {
+            return errorState.get();
+        },
+
         async toggleFavouriteMovieId(movieId) {
             let result = [...this.state.favouriteMovieIds];
-            const updateUserDoc = doc(db, 'users', this.state.uid);
-
-            console.log(store.storageUser.movies.length);
-
+            const updateUserDoc = doc(db, 'users', this.state.uid);            
+        
             const index = result.indexOf(movieId);
             if (index === -1) {
                 result.push(movieId);
@@ -84,8 +93,7 @@ export function useStore() {
         async signInWithProvider(provider) {
             try {
                 const res = await signInWithPopup(auth, provider);
-                const user = res.user;
-                console.log(user);
+                const user = res.user;                
                 store.uid.set(user.uid);
                 const createUserRef = doc(db, 'users', user.uid);
 
@@ -101,10 +109,12 @@ export function useStore() {
                         movies: [],
                     })
                 }
+                store.errMessage.set('');
             }
             catch (err) {
                 console.error(err);
-                alert(err.message);
+                store.errMessage.set(err.message);
+                this.getErrorMessage(err.code);
             }
         },
 
@@ -121,10 +131,11 @@ export function useStore() {
                     movies: [],
                 })
                 this.getUserData(user);
+                store.errMessage.set('');
             }
             catch (err) {
                 console.error(err);
-                alert(err.message);
+                this.getErrorMessage(err.code);
             }
         },
 
@@ -133,10 +144,11 @@ export function useStore() {
                 const res = await signInWithEmailAndPassword(auth, email, password);
                 const user = res.user;
                 this.getUserData(user);
+                store.errMessage.set('');
 
             } catch (err) {
                 console.error(err);
-                alert(err.message);
+                this.getErrorMessage(err.code);
             }
         },
 
@@ -147,19 +159,49 @@ export function useStore() {
         },
 
         async deleteAccount() {
-            const user = auth.currentUser;
-            console.log(user.providerData[0]);
+            const user = auth.currentUser;            
             try {
                 deleteUser(user).then(() => {
-                    deleteDoc(doc(db, 'users', user.uid));                    
+                    deleteDoc(doc(db, 'users', user.uid));
                     store.storageUser.set(null);
-                    store.favouriteMovieIds.set([]);                
+                    store.favouriteMovieIds.set([]);
                 })
+                store.errMessage.set('');
             }
             catch (err) {
-                console.log(err.message);
+                console.log(err.message);                
+            }
+        },
+
+        getErrorMessage(error) {
+            switch (error) {
+                case 'auth/wrong-password':
+                    errorMsg.errMessage.set('The password is invalid. Please try again.');
+                    break;
+                case 'auth/too-many-requests':
+                    errorMsg.errMessage.set('Too many login attempts. Please try again later.');
+                    break;
+                case 'auth/user-not-found':
+                    errorMsg.errMessage.set('User not found.');
+                    break;
+                case 'auth/network-request-failed':
+                    errorMsg.errMessage.set('Network connection failed. Please try again.');
+                    break;
+                case 'auth/timeout':
+                    errorMsg.errMessage.set('Time out');
+                    break;
+                case 'auth/invalid-email':
+                    errorMsg.errMessage.set('Invalid email format.');
+                    break;
+                case 'auth/weak-password':
+                    errorMsg.errMessage.set('Password should be at least 6 characters.');
+                    break;
+                case 'auth/email-already-in-use':
+                    errorMsg.errMessage.set('Email already in use.');
+                    break;
+                default:
+                    errorMsg.errMessage.set('Something went wrong. Please try again.');
             }
         }
-
     }
 }

@@ -8,7 +8,7 @@ import { googleProvider } from '../config/firebase-config';
 import PATH from '../services/paths';
 
 export default function Register() {
-  
+
   const store = useStore();
   const history = useHistory();
   const user = store.state.storageUser;
@@ -16,8 +16,8 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPasswod] = useState('');
 
-  const register = () => {
-    if(!name && !email && !password) return alert('Fill up details');
+  const registerNewUser = (e) => {
+    e.preventDefault();
     store.registerNewUser(name, email, password);
   }
 
@@ -35,20 +35,23 @@ export default function Register() {
         <div className="login__auth-wrapper">
           <ul>
             <li className="login__item">
-              <div className="login__form">
+              <form
+                className="login__form"
+                onSubmit={registerNewUser}
+              >
                 <input
                   className="login__input"
                   type="text"
                   placeholder="Your Name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => setName(e.target.value.trimStart())}
                   required />
                 <input
                   className="login__input"
                   type="email"
                   placeholder="Your Email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value.trimStart())}
                   required />
                 <input
                   className="login__input"
@@ -57,15 +60,16 @@ export default function Register() {
                   value={password}
                   onChange={(e) => setPasswod(e.target.value)}
                   required />
-                <button 
-                className='login__btn'
-                onClick={register}
+                <p className='login__alert'>{store.errorState.errMessage}</p>
+                <button
+                  className='login__btn'
+                  type='submit'
                 >
-                Create your CINEMACLOUD account</button>
-              </div>
+                  Create your CINEMACLOUD account</button>
+              </form>
             </li>
             <li className="login__item">
-            <p className="login__text">OR</p>
+              <p className="login__text">OR</p>
             </li>
             <li className="login__item">
               <span className='login__icon'><FontAwesomeIcon icon={faGoogle} /></span>
