@@ -22,9 +22,9 @@ export default function LoginPanel() {
 
   useEffect(() => {
     if (user) {
+      history.push(PATH.USER_PANEL);
       setEmail("");
       setPasswod("");
-      history.push(PATH.USER_PANEL);
     }
   }, [user]);
 

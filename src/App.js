@@ -34,12 +34,12 @@ export default function App() {
                 </Route>
                 <Route path={PATH.REGISTER}>
                     <Register />
-                </Route>  
+                </Route>                                 
                 <Route
                     path={PATH.SINGLE_MOVIE}
                     children={<SingleMovie />}>
                 </Route>
-                <Route component={NotFoundPage}/>                
+                <Route path='*' component={NotFoundPage}/>
             </Switch>
             <Footer />
         </Router>
