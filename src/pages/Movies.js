@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import MovieCard from '../components/MovieCard';
 import Spinner from '../components/Spinner';
 import { IMAGE_URL, POPULAR_MOVIES_URL, POSTER_SIZE } from '../config/config';

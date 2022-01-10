@@ -7,6 +7,7 @@ import SingleMovie from './pages/SingleMovie';
 import LoginPanel from './pages/LoginPanel';
 import UserPanel from './pages/UserPanel';
 import Register from './pages/Register';
+import NotFoundPage from './pages/NotFoundPage';
 import {
     BrowserRouter as Router,
     Switch,
@@ -37,7 +38,8 @@ export default function App() {
                 <Route
                     path={PATH.SINGLE_MOVIE}
                     children={<SingleMovie />}>
-                </Route>           
+                </Route>
+                <Route component={NotFoundPage}/>                
             </Switch>
             <Footer />
         </Router>

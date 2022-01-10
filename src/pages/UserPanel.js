@@ -46,7 +46,7 @@ export default function UserPanel() {
     getRealTimeUserData();
 
     return () => {
-      setUserData({});
+      setUserData(null);
     }
   }, [])
 
