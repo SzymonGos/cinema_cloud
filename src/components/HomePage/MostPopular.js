@@ -19,8 +19,6 @@ export default function MostPopular({ movies }) {
         };
     }, []);
 
-    console.log(offset);
-
     return (
         <section className="popular-content">
             <div className="title-wrapper">

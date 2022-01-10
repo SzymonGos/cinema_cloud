@@ -14,11 +14,13 @@ import {
     Route,
 } from "react-router-dom";
 import PATH from './services/paths';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
     return (
         <Router>
             <Navbar />
+            <ScrollToTop />
             <Switch>
                 <Route exact path={PATH.HOME}>
                     <Home />

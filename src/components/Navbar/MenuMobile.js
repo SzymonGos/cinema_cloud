@@ -76,8 +76,7 @@ export default function MenuMobile() {
                   icon={faAngleRight}
                   className="mobile-menu__icon"
                 />
-                <Link
-                  // to={}
+                <span                  
                   className="mobile-menu__link"
                   onClick={() => {
                     store.logout();
@@ -85,7 +84,7 @@ export default function MenuMobile() {
                   }}
                 >
                   Logout
-                </Link>
+                </span>
               </li>
             </>
             : <li>
