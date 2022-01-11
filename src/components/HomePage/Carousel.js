@@ -44,28 +44,20 @@ export default function Carousel({movies}) {
         prevArrow: <ArrowLeft />,
         responsive: [
             {
-                breakpoint: 768,
+                breakpoint: 1000,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 3,
                     arrows: true
-                }
-            },
+                }            
+            }, 
             {
-                breakpoint: 450,
+                breakpoint: 800,
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 2,
-                    arrows: false
-                }
-            },
-            {
-                breakpoint: 375,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    arrows: false
-                }
+                    arrows: true
+                }            
             }
         ]
     };

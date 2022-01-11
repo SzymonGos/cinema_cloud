@@ -7,17 +7,20 @@ import SingleMovie from './pages/SingleMovie';
 import LoginPanel from './pages/LoginPanel';
 import UserPanel from './pages/UserPanel';
 import Register from './pages/Register';
+import ErrorPage from './pages/ErrorPage';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
 } from "react-router-dom";
 import PATH from './services/paths';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
     return (
         <Router>
             <Navbar />
+            <ScrollToTop />
             <Switch>
                 <Route exact path={PATH.HOME}>
                     <Home />
@@ -33,11 +36,12 @@ export default function App() {
                 </Route>
                 <Route path={PATH.REGISTER}>
                     <Register />
-                </Route>  
+                </Route>                
                 <Route
                     path={PATH.SINGLE_MOVIE}
                     children={<SingleMovie />}>
-                </Route>           
+                </Route>
+                <Route path='*' component={ErrorPage} />
             </Switch>
             <Footer />
         </Router>

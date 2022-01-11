@@ -7,9 +7,9 @@ const LinkTypePlugin = require('html-webpack-link-type-plugin').HtmlWebpackLinkT
 require('dotenv').config({ path: './.env' }); 
 
 module.exports = {
-    output: {
-        path: path.join(__dirname, '/build'),
-        filename: 'index.bundle.js',
+    output: {        
+        path: path.join(__dirname, '/build' + 'style.css'),
+        filename: 'index.bundle.js',        
     },
     devServer: {
         port: 8080,

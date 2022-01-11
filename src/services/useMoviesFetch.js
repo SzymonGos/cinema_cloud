@@ -28,6 +28,9 @@ const useMoviesFetch = () => {
 
     useEffect( () => {
         fetchMovies(POPULAR_MOVIES_URL);
+        return () => {
+            setState({});
+        }
     }, []);
 
     return { state, isLoading, fetchMovies }

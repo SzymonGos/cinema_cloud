@@ -11,7 +11,7 @@ export default function FavouriteMovieCard({ favMovies }) {
 
   const { state } = useSingleMovieFetch(favMovies);
   const store = useStore();
-  const movieReleasedDate = state.release_date
+  const movieReleasedDate = state.release_date;
 
   return (
     <div className='favourite'>

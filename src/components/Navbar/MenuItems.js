@@ -8,29 +8,25 @@ import { useStore } from '../../services/storage';
 export default function MenuItems() {
 
     const store = useStore();
-    const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
-    const menuRef = useRef(null);
+    const menuRef = useRef();
     const user = store.state.storageUser;
 
     const flipArrow = isOpen ? 'arrowUp' : 'arrowDown';
     const expandMenu = isOpen ? 'optionsOn' : 'optionsOff';
 
     const toggleDropDownMenu = (e) => {
-        if (menuRef.current && !menuRef.current.contains(e.target)) {
-            setIsOpen(!isOpen)
+        if (isOpen && menuRef.current && !menuRef.current.contains(e.target)) {
+            setIsOpen(false)
         }
     }
 
     useEffect(() => {
-        if (isOpen) return document.addEventListener('click', toggleDropDownMenu);
-        
-        if (!user) return history.push(PATH.HOME);
+        if (isOpen) return window.addEventListener('click', toggleDropDownMenu);
         return () => {
-            document.removeEventListener('click', toggleDropDownMenu);
+            window.removeEventListener('click', toggleDropDownMenu);
         }
-    }, [isOpen, menuRef])
-
+    }, [isOpen, menuRef]);
 
     return (
         <>
@@ -77,24 +73,24 @@ export default function MenuItems() {
                             onClick={() => setIsOpen(!isOpen)}
                         >
                             <FontAwesomeIcon
-                            icon={faUser}
-                             />
+                                icon={faUser}
+                            />
                             <FontAwesomeIcon
                                 icon={faCaretDown}
                                 className={`menu__arrow ${flipArrow}`} />
                         </div>
                         <div className={`menu__overlay ${expandMenu}`}>
                             <ul className='menu__options'>
-                                <Link
-                                    to={PATH.USER_PANEL}
-                                >
-                                    <li>
+                                <li>
+                                    <Link to={PATH.USER_PANEL}>
                                         <p>My Profile</p>
-                                    </li>
-                                </Link>
-                                <li
-                                onClick={() => store.logout()}
-                                >
+
+                                    </Link>
+                                </li>
+                                <li onClick={() => {
+                                    store.logout();
+                                    setIsOpen(!isOpen);
+                                }}>
                                     <p>Logout</p>
                                 </li>
                             </ul>

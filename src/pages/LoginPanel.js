@@ -7,8 +7,6 @@ import { useStore } from '../services/storage';
 import { googleProvider } from '../config/firebase-config';
 import PATH from '../services/paths';
 
-
-
 export default function LoginPanel() {
 
   const store = useStore();
@@ -17,11 +15,16 @@ export default function LoginPanel() {
   const [password, setPasswod] = useState('');
   const user = store.state.storageUser;
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    store.signInUser(email, password);
+  };
+
   useEffect(() => {
     if (user) {
+      history.push(PATH.USER_PANEL);
       setEmail("");
       setPasswod("");
-      history.push(PATH.USER_PANEL);
     }
   }, [user]);
 
@@ -35,8 +38,10 @@ export default function LoginPanel() {
         <div className="login__auth-wrapper">
           <ul>
             <li className="login__item">
-              <div
-                className="login__form">
+              <form
+                className="login__form"
+                onSubmit={handleLogin}
+              >
                 <input
                   className="login__input"
                   type="email"
@@ -51,11 +56,14 @@ export default function LoginPanel() {
                   value={password}
                   onChange={(e) => setPasswod(e.target.value)}
                   required />
+                <p className='login__alert'>{store.errorState.errMessage}</p>
                 <button
                   className='login__btn'
-                  onClick={() => store.signInUser(email, password)}
-                >Login</button>
-              </div>
+                  type='submit'
+                >
+                  Login
+                </button>
+              </form>
             </li>
             <li className="login__item">
               <span>Don't have an account? <br /></span>

@@ -14,6 +14,10 @@ const useSingleMovieFetch = (movieId) => {
         catch (e) {
             console.error(e);
         }
+
+        return () => {
+            setState({});
+        }
     },[movieId])
 
     return {state}
