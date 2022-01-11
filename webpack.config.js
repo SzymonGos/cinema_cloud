@@ -9,7 +9,8 @@ require('dotenv').config({ path: './.env' });
 module.exports = {
     output: {        
         path: path.join(__dirname, '/build'),
-        filename: 'index.bundle.js',        
+        filename: 'index.bundle.js',
+        publicPath: '/',  
     },
     devServer: {
         port: 8080,
