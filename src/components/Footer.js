@@ -30,7 +30,7 @@ export default function Footer() {
                 </div>
                 <div className="copyright">
                     <p>
-                        Copyright &#169; 2021 Cinemacloud
+                        Copyright &#169; 2022 Cinemacloud
                     </p>
 
                 </div>
