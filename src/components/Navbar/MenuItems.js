@@ -10,7 +10,7 @@ export default function MenuItems() {
     const store = useStore();
     const [isOpen, setIsOpen] = useState(false);
     const menuRef = useRef();
-    const user = store.state.storageUser;
+    const user = JSON.parse(JSON.stringify(store.state.storageUser));
 
     const flipArrow = isOpen ? 'arrowUp' : 'arrowDown';
     const expandMenu = isOpen ? 'optionsOn' : 'optionsOff';

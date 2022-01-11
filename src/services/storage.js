@@ -26,7 +26,7 @@ const initialState = {
     isOpen: false,
     isMenuOpen: false,
     uid: '',
-    storageUser: {},
+    storageUser: null,
 };
 
 const errState = {
