@@ -8,7 +8,7 @@ require('dotenv').config({ path: './.env' });
 
 module.exports = {
     output: {        
-        path: path.join(__dirname, '/build' + 'style.css'),
+        path: path.join(__dirname, '/build'),
         filename: 'index.bundle.js',        
     },
     devServer: {

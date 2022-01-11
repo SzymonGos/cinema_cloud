@@ -36,12 +36,12 @@ export default function App() {
                 </Route>
                 <Route path={PATH.REGISTER}>
                     <Register />
-                </Route>                
+                </Route>
                 <Route
                     path={PATH.SINGLE_MOVIE}
                     children={<SingleMovie />}>
                 </Route>
-                <Route path='*' component={ErrorPage} />
+                <Route component={ErrorPage} />
             </Switch>
             <Footer />
         </Router>
