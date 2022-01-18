@@ -112,8 +112,7 @@ export function useStore() {
                 store.errMessage.set('');
             }
             catch (err) {
-                console.error(err);
-                store.errMessage.set(err.message);
+                console.error(err);                
                 this.getErrorMessage(err.code);
             }
         },

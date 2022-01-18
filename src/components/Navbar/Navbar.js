@@ -11,8 +11,7 @@ export default function Navbar() {
 
     const store = useStore()
     const [offset, setOffset] = useState(0);
-    const user = store.state.storageUser;
-
+    const user = store.state.storageUser;    
 
     useEffect(() => {
         window.onscroll = () => {

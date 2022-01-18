@@ -31,6 +31,7 @@ export default function SearchForm() {
         fetchMovies(loadNextPageUrl);
     }
 
+    console.log(movies);
 
     return (
         <section className={`${isSearchModalOpen}`}>
@@ -59,23 +60,27 @@ export default function SearchForm() {
                 >
                     <FontAwesomeIcon icon={faTimes} />
                 </div>
-                {isLoading && <Spinner/>}
+                {isLoading && <Spinner />}
                 {(query.length > 1) &&
-                    <div className="movies__content" style={{marginBottom: '4rem'}}>
-                        {movies && <div className="grid">
-                            {movies.map((movie, index) =>
-                                <MovieCard
-                                    key={index}
-                                    title={movie.title}
-                                    id={movie.id}
-                                    image={
-                                        movie.poster_path
-                                            ? `${IMAGE_URL}${POSTER_SIZE}${movie.poster_path}`
-                                            : placeHolder
-                                    }
-                                />
-                            )}
-                        </div>
+                    <div className="movies__content" style={{ marginBottom: '4rem' }}>
+                        {movies.length === 0
+                            ? <div className='query-message'>
+                                <h2>No Movies Found.</h2>
+                            </div>
+                            : <div className="grid">
+                                {movies.map((movie, index) =>
+                                    <MovieCard
+                                        key={index}
+                                        title={movie.title}
+                                        id={movie.id}
+                                        image={
+                                            movie.poster_path
+                                                ? `${IMAGE_URL}${POSTER_SIZE}${movie.poster_path}`
+                                                : placeHolder
+                                        }
+                                    />
+                                )}
+                            </div>
                         }
                         {movies.length >= 20 && <div className='btn-wrapper'>
                             <button className='button--load-more' type='submit' onClick={loadMoreMovies}>
