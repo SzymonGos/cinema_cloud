@@ -31,8 +31,6 @@ export default function SearchForm() {
         fetchMovies(loadNextPageUrl);
     }
 
-    console.log(movies);
-
     return (
         <section className={`${isSearchModalOpen}`}>
             <div className="content">
