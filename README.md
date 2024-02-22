@@ -4,7 +4,6 @@
 
 The cinemacloud app provides efficient support for searching for movies, obtaining movies data and creating a user account for gathering the most favourite movies by the user.
 
-<a href = "https://cinemacloud.netlify.app/" target= "_blank">Visit the Site</a>
 
 ## Screenshots 
 Below you'll find some screenshots of the app.
